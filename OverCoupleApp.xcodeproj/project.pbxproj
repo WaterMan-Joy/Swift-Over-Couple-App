@@ -12,6 +12,10 @@
 		A86905202A5E3CC600C0A7FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A869051F2A5E3CC600C0A7FE /* Preview Assets.xcassets */; };
 		A86905312A5E45E500C0A7FE /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86905302A5E45E500C0A7FE /* FeedView.swift */; };
 		A86905352A5E46A800C0A7FE /* FeedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86905342A5E46A800C0A7FE /* FeedRowView.swift */; };
+		A86905382A5E5A9D00C0A7FE /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86905372A5E5A9D00C0A7FE /* MainTabView.swift */; };
+		A869053C2A5E5C9000C0A7FE /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869053B2A5E5C9000C0A7FE /* NotificationView.swift */; };
+		A86905422A5E5D2B00C0A7FE /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86905412A5E5D2B00C0A7FE /* ExploreView.swift */; };
+		A86905442A5E5D4500C0A7FE /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86905432A5E5D4500C0A7FE /* MessagesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		A869051F2A5E3CC600C0A7FE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A86905302A5E45E500C0A7FE /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		A86905342A5E46A800C0A7FE /* FeedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowView.swift; sourceTree = "<group>"; };
+		A86905372A5E5A9D00C0A7FE /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		A869053B2A5E5C9000C0A7FE /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		A86905412A5E5D2B00C0A7FE /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		A86905432A5E5D4500C0A7FE /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,7 @@
 				A86905262A5E3ECD00C0A7FE /* Core */,
 				A869051B2A5E3CC600C0A7FE /* Assets.xcassets */,
 				A869051D2A5E3CC600C0A7FE /* OverCoupleApp.entitlements */,
+				A86905172A5E3CC500C0A7FE /* OverCoupleAppApp.swift */,
 				A869051E2A5E3CC600C0A7FE /* Preview Content */,
 			);
 			path = OverCoupleApp;
@@ -76,10 +85,13 @@
 		A86905262A5E3ECD00C0A7FE /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A86905172A5E3CC500C0A7FE /* OverCoupleAppApp.swift */,
 				A86905322A5E465E00C0A7FE /* Components */,
-				A86905292A5E3F3200C0A7FE /* Feed */,
 				A86905282A5E3F2C00C0A7FE /* Auth */,
+				A86905362A5E5A6600C0A7FE /* MainTab */,
+				A86905292A5E3F3200C0A7FE /* Feed */,
+				A86905392A5E5C5C00C0A7FE /* Notification */,
+				A869053D2A5E5CD400C0A7FE /* Explore */,
+				A869053F2A5E5D0900C0A7FE /* Messages */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -160,6 +172,62 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		A86905362A5E5A6600C0A7FE /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				A86905372A5E5A9D00C0A7FE /* MainTabView.swift */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		A86905392A5E5C5C00C0A7FE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A869053A2A5E5C7300C0A7FE /* View */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		A869053A2A5E5C7300C0A7FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A869053B2A5E5C9000C0A7FE /* NotificationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A869053D2A5E5CD400C0A7FE /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				A869053E2A5E5CE800C0A7FE /* View */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		A869053E2A5E5CE800C0A7FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A86905412A5E5D2B00C0A7FE /* ExploreView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A869053F2A5E5D0900C0A7FE /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				A86905402A5E5D1800C0A7FE /* View */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		A86905402A5E5D1800C0A7FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A86905432A5E5D4500C0A7FE /* MessagesView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -233,6 +301,10 @@
 				A86905312A5E45E500C0A7FE /* FeedView.swift in Sources */,
 				A86905182A5E3CC500C0A7FE /* OverCoupleAppApp.swift in Sources */,
 				A86905352A5E46A800C0A7FE /* FeedRowView.swift in Sources */,
+				A86905382A5E5A9D00C0A7FE /* MainTabView.swift in Sources */,
+				A86905442A5E5D4500C0A7FE /* MessagesView.swift in Sources */,
+				A86905422A5E5D2B00C0A7FE /* ExploreView.swift in Sources */,
+				A869053C2A5E5C9000C0A7FE /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
