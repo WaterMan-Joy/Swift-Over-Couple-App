@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct MessagesView: View {
+struct ChatView: View {
     var body: some View {
-        Text("Messages View")
+        Text("Chat View")
     }
 }
 
-struct MessagesView_Previews: PreviewProvider {
+struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesView()
+        ChatView()
     }
 }

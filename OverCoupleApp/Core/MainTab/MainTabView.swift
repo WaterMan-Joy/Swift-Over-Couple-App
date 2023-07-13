@@ -25,24 +25,30 @@ struct MainTabView: View {
                     self.selectedIndex = 1
                 }
                 .tabItem({
-                    Image(systemName: "house")
+                    Image(systemName: "magnifyingglass")
                 }).tag(1)
-            
-            NotificationView()
+            ChatView()
                 .onTapGesture {
                     self.selectedIndex = 2
                 }
                 .tabItem({
-                    Image(systemName: "house")
+                    Image(systemName: "plus.rectangle.fill")
                 }).tag(2)
-            
-            MessagesView()
+            NotificationView()
                 .onTapGesture {
                     self.selectedIndex = 3
                 }
                 .tabItem({
-                    Image(systemName: "house")
+                    Image(systemName: "bell.fill")
                 }).tag(3)
+            
+            ChatView()
+                .onTapGesture {
+                    self.selectedIndex = 4
+                }
+                .tabItem({
+                    Image(systemName: "text.bubble.fill")
+                }).tag(4)
         }) //: TABVIEW
     }
 }

@@ -11,8 +11,8 @@ struct FeedView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(0 ... 20, id: \.self) { _ in
-                    FeedRowView(username: "Joy", caption: "my X-Friend", coulpename: "Sunny", coupleColor: .green)
+                ForEach(Post.MOCK_POSTS) { post in
+                    FeedRowView(username: post.username, caption: post.caption, couplename: post.user?.couplename ?? "none")
                 }
             }
         }

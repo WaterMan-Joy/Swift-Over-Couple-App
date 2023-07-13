@@ -11,8 +11,7 @@ struct FeedRowView: View {
     
     let username: String
     let caption: String
-    let coulpename: String
-    let coupleColor: Color
+    let couplename: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 30, content: {
@@ -29,16 +28,16 @@ struct FeedRowView: View {
                     // user info
                     HStack(content: {
                         Text(username)
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .font(.system(size: 20, weight: .bold, design: .monospaced))
                         
-                        Text("with \(coulpename)")
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                            .foregroundColor(Color(.systemGray))
+                        Text("with \(couplename)")
+                            .font(.system(size: 16, weight: .bold, design: .monospaced))
+                            .foregroundColor(.white)
                     }) //: HSTACK user info
                     
                     // feed caption
                     Text(caption)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(.system(size: 20, weight: .bold, design: .monospaced))
                 }) //: VSTACK user info & feed caption
                 .padding(.leading, 10)
                 
@@ -47,17 +46,17 @@ struct FeedRowView: View {
             // action buttons + date
             HStack(content: {
                 Text("2 week")
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundColor(Color(.systemGray))
+                    .font(.system(size: 16, weight: .bold, design: .monospaced))
+                    .foregroundColor(Color(.white))
                 Spacer()
                 Button(action: {}, label: {
                     Image(systemName: "text.bubble")
-                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .font(.system(size: 20, weight: .semibold, design: .monospaced))
                         .foregroundColor(.black)
                 })
                 Button(action: {}, label: {
                     Image(systemName: "heart")
-                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .font(.system(size: 20, weight: .semibold, design: .monospaced))
                         .foregroundColor(.black)
                 })
             }) //: HSTACK
@@ -65,14 +64,16 @@ struct FeedRowView: View {
         }) //: VSTACK
         .frame(maxWidth: .infinity)
         .padding(.all, 30)
-        .background(coupleColor)
-        .cornerRadius(20)
-        .padding()
+        .background(Color(.systemPink))
+        .cornerRadius(10)
+        .padding(.horizontal)
+        
+        Divider()
     }
 }
 
 struct FeedRowView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedRowView(username: "Name", caption: "Caption", coulpename: "Couple Name", coupleColor: .white)
+        FeedRowView(username: "Name", caption: "Caption", couplename: "Couple Name")
     }
 }
