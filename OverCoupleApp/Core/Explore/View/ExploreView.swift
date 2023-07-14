@@ -9,7 +9,35 @@ import SwiftUI
 
 struct ExploreView: View {
     var body: some View {
-        Text("Explore View")
+        
+        // explore view
+        NavigationView(content: {
+            
+            
+            VStack(content: {
+                
+                ScrollView(content: {
+                    
+                    LazyVStack(content: {
+                        
+                        ForEach(User.MOCK_USERS, content: { user in
+                            NavigationLink(destination: {
+                                ProfileView()
+                            }, label: {
+                                UserRowView(username: user.username, couplename: user.couplename ?? "")
+                            }) //: NAVIGATION LINK
+                            
+                        }) //: FOR EACH
+                        
+                    }) // : LAZY VSTACK
+                    
+                }) //: SCROLL VIEW
+                
+            }) //: VSTACK
+            .navigationTitle("EXPLORE")
+            .navigationBarTitleDisplayMode(.inline)
+            
+        }) //: NAVIGATION VIEW
     }
 }
 

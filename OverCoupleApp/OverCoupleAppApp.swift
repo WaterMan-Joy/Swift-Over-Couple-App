@@ -11,7 +11,9 @@ import SwiftUI
 struct OverCoupleAppApp: App {
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            NavigationStack {
+                MainTabView()
+            }
         }
     }
 }

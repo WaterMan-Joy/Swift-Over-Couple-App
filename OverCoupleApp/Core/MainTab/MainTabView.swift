@@ -32,7 +32,7 @@ struct MainTabView: View {
                     self.selectedIndex = 2
                 }
                 .tabItem({
-                    Image(systemName: "plus.rectangle.fill")
+                    Image(systemName: "text.bubble.fill")
                 }).tag(2)
             NotificationView()
                 .onTapGesture {
@@ -42,12 +42,13 @@ struct MainTabView: View {
                     Image(systemName: "bell.fill")
                 }).tag(3)
             
-            ChatView()
+            ProfileView()
+                .navigationBarBackButtonHidden(true)
                 .onTapGesture {
                     self.selectedIndex = 4
                 }
                 .tabItem({
-                    Image(systemName: "text.bubble.fill")
+                    Image(systemName: "person.circle.fill")
                 }).tag(4)
         }) //: TABVIEW
     }

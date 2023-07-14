@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     
     @State private var selectedFilter: PostFilterViewModel = .myPosts
+//    @Environment(\.presentationMode) var mode
     @Namespace var animation
     
     var body: some View {
@@ -44,24 +45,25 @@ struct ProfileView_Previews: PreviewProvider {
 
 extension ProfileView {
     
-    var headerView: some View {
+     var headerView: some View {
         // user image + couple image
         ZStack(alignment: .top, content: {
             Color(.systemPink)
                 .ignoresSafeArea()
             
-            HStack(content: {
-                Button(action: {
-                    print("profile back")
-                }, label: {
-                    Image(systemName: "arrow.left")
-                        .resizable()
-                        .frame(width: 20, height: 16)
-                        .foregroundColor(.white)
-                })
-                .padding(.horizontal, 30)
-                Spacer()
-            })
+//            HStack(content: {
+//                Button(action: {
+//                    print("profile back")
+//                    mode.wrappedValue.dismiss()
+//                }, label: {
+//                    Image(systemName: "arrow.left")
+//                        .resizable()
+//                        .frame(width: 20, height: 16)
+//                        .foregroundColor(.white)
+//                })
+//                .padding(.horizontal, 30)
+//                Spacer()
+//            })
             
             HStack(content: {
                 
@@ -77,6 +79,7 @@ extension ProfileView {
                 Circle()
                     .frame(width: 100)
             })
+            .offset(y: 20)
             
         }) //: ZSTACK
         .frame(height: 150)

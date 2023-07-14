@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct Post: Identifiable {
     let id: String

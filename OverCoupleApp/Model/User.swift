@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct User {
+struct User: Identifiable {
     let id: String
     let username: String
     let bio: String
@@ -19,6 +19,11 @@ struct User {
 extension User {
     static var MOCK_USERS: [User] = [
         .init(id: NSUUID().uuidString, username: "Joy", bio: "i am over man", couplename: "Sunny", couple: false),
+        .init(id: NSUUID().uuidString, username: "Joy", bio: "i am over", couplename: "Sunny", couple: true),
+        .init(id: NSUUID().uuidString, username: "Joy", bio: "i am over", couplename: "Sunny", couple: true),
+        .init(id: NSUUID().uuidString, username: "Joy", bio: "i am over", couplename: "Sunny", couple: true),
+        .init(id: NSUUID().uuidString, username: "Joy", bio: "i am over", couplename: "Sunny", couple: true),
+        .init(id: NSUUID().uuidString, username: "Joy", bio: "i am over", couplename: "Sunny", couple: true),
         .init(id: NSUUID().uuidString, username: "Joy", bio: "i am over", couplename: "Sunny", couple: true),
     ]
 }
