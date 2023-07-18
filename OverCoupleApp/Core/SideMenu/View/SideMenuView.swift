@@ -22,19 +22,44 @@ struct SideMenuView: View {
             .cornerRadius(20)
             
             // sie menus
-            ForEach(SideMenuViewModel.allCases, id: \.rawValue) {sideMenu in
+            ForEach(SideMenuViewModel.allCases, id: \.rawValue) { sideMenu in
                 
-                // side menu
-                HStack(spacing: 20, content: {
-                    Image(systemName: sideMenu.imageName)
-                        .font(.system(size: 30, weight: .semibold, design: .monospaced))
-                    
-                    Text(sideMenu.description)
-                        .font(.system(size: 30, weight: .semibold, design: .monospaced))
-                    
-                }) //: HSTACK / side menu
-                .foregroundColor(.pink)
-                
+                if sideMenu == .profile {
+                    NavigationLink {
+                        ProfileView()
+                    } label: {
+                        SideMenuItemRowView(viewModel: sideMenu)
+                    }
+                }
+                else if sideMenu == .logout {
+                    NavigationLink {
+                        Text("LOG OUT")
+                    } label: {
+                        SideMenuItemRowView(viewModel: sideMenu)
+                    }
+                }
+                else if sideMenu == .lists {
+                    NavigationLink {
+                        Text("LISTS")
+                    } label: {
+                        SideMenuItemRowView(viewModel: sideMenu)
+                    }
+                }
+                else if sideMenu == .bookmarks {
+                    NavigationLink {
+                        Text("BOOK MARKS")
+                    } label: {
+                        SideMenuItemRowView(viewModel: sideMenu)
+                    }
+                }
+                else {
+                    NavigationLink {
+                        Text("??")
+                    } label: {
+                        SideMenuItemRowView(viewModel: sideMenu)
+                    }
+                }
+
             } //: FOR EACH / sie menus
             
             Spacer()

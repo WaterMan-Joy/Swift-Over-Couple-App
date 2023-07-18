@@ -18,16 +18,16 @@ struct ProfileView: View {
         VStack(content: {
             
             // header view
-            headerView
+            HeaderView()
             
             // user info details
-            userInfoDetails
+            UserInfoDetails(username: User.MOCK_USERS[0].username, couplename: User.MOCK_USERS[0].couplename ?? "None", bio: User.MOCK_USERS[0].bio)
             
             // post filter bar
             postFilterBar
             
             // posts view
-            postsView
+            PostsView()
             
             
             Spacer()
@@ -42,28 +42,13 @@ struct ProfileView_Previews: PreviewProvider {
     }
 }
 
-
-extension ProfileView {
-    
-     var headerView: some View {
+// header view
+struct HeaderView: View {
+    var body: some View {
         // user image + couple image
         ZStack(alignment: .top, content: {
             Color(.systemPink)
                 .ignoresSafeArea()
-            
-//            HStack(content: {
-//                Button(action: {
-//                    print("profile back")
-//                    mode.wrappedValue.dismiss()
-//                }, label: {
-//                    Image(systemName: "arrow.left")
-//                        .resizable()
-//                        .frame(width: 20, height: 16)
-//                        .foregroundColor(.white)
-//                })
-//                .padding(.horizontal, 30)
-//                Spacer()
-//            })
             
             HStack(content: {
                 
@@ -79,14 +64,21 @@ extension ProfileView {
                 Circle()
                     .frame(width: 100)
             })
-            .offset(y: 20)
+            .offset(y: -20)
             
         }) //: ZSTACK
-        .frame(height: 150)
+        .frame(height: 100)
     }
+}
+
+// userInfo details
+struct UserInfoDetails: View {
     
-    var userInfoDetails: some View {
-        
+    let username: String
+    let couplename: String
+    let bio: String
+    
+    var body: some View {
         // user name + is couple? + edit profile + bio
         VStack {
             
@@ -97,7 +89,7 @@ extension ProfileView {
                 VStack(content: {
                     HStack(content: {
                         // user name
-                        Text(User.MOCK_USERS[0].username)
+                        Text(username)
                             .font(.system(size: 30, weight: .bold, design: .monospaced))
                         // is couple?
                         Image(systemName: "heart.circle")
@@ -108,7 +100,7 @@ extension ProfileView {
                     VStack(content: {
                         Text("with")
                             .font(.system(size: 20, weight: .bold, design: .monospaced))
-                        Text(User.MOCK_USERS[0].couplename ?? "NONE")
+                        Text(couplename)
                             .font(.system(size: 25, weight: .bold, design: .monospaced))
                         Image(systemName: "heart.circle")
                             .font(.system(size: 30, weight: .bold, design: .monospaced))
@@ -137,20 +129,37 @@ extension ProfileView {
             .padding()
             
             // bio
-            Text("\(User.MOCK_USERS[0].bio)")
-                .font(.system(size: 30, weight: .semibold, design: .monospaced))
+            Text("\(bio)")
+                .font(.system(size: 15, weight: .semibold, design: .monospaced))
             
             Divider()
             
             
         } //: VSTACK / user name + is couple? + edit profile + bio
-
     }
-    
+}
+
+// posts view
+struct PostsView: View {
+    var body: some View {
+        ScrollView(showsIndicators: true, content: {
+            LazyVStack(content: {
+                ForEach(Post.MOCK_POSTS) { post in
+                    FeedRowView(username: post.username, caption: post.caption, couplename: post.user?.couplename ?? "None")
+                }
+            }) //: LAZY VSTACK
+        }) //: SCROLL VIEW
+    }
+}
+
+extension ProfileView {
+    // post filter bar
     var postFilterBar: some View {
+        
         // my posts & our posts & like posts
         HStack(content: {
             ForEach(PostFilterViewModel.allCases, id: \.rawValue, content: { item in
+                
                 Spacer()
                 VStack(content: {
                     Text(item.title)
@@ -179,14 +188,5 @@ extension ProfileView {
             }) //: FOREACH
         }) //: HSTACK / my posts & our posts & like posts
     }
-    
-    var postsView: some View {
-        ScrollView(showsIndicators: true, content: {
-            LazyVStack(content: {
-                ForEach(Post.MOCK_POSTS) { post in
-                    FeedRowView(username: post.username, caption: post.caption, couplename: post.user?.couplename ?? "None")
-                }
-            }) //: LAZY VSTACK
-        }) //: SCROLL VIEW
-    }
 }
+

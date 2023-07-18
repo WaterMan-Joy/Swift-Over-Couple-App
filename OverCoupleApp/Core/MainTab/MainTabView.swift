@@ -17,7 +17,7 @@ struct MainTabView: View {
                     self.selectedIndex = 0
                 }
                 .tabItem({
-                    Image(systemName: "house")
+                    Image(systemName: "house.circle.fill")
                 }).tag(0)
             
             ExploreView()
@@ -25,21 +25,23 @@ struct MainTabView: View {
                     self.selectedIndex = 1
                 }
                 .tabItem({
-                    Image(systemName: "magnifyingglass")
+                    Image(systemName: "text.magnifyingglass")
                 }).tag(1)
+            
             ChatView()
                 .onTapGesture {
                     self.selectedIndex = 2
                 }
                 .tabItem({
-                    Image(systemName: "text.bubble.fill")
+                    Image(systemName: "message.circle")
                 }).tag(2)
+            
             NotificationView()
                 .onTapGesture {
                     self.selectedIndex = 3
                 }
                 .tabItem({
-                    Image(systemName: "bell.fill")
+                    Image(systemName: "bell.circle")
                 }).tag(3)
             
             ProfileView()
@@ -48,7 +50,7 @@ struct MainTabView: View {
                     self.selectedIndex = 4
                 }
                 .tabItem({
-                    Image(systemName: "person.circle.fill")
+                    Image(systemName: "person.circle")
                 }).tag(4)
         }) //: TABVIEW
     }
