@@ -6,18 +6,28 @@
 //
 
 import SwiftUI
+import Firebase
+import GoogleSignIn
 
 @main
 struct OverCoupleAppApp: App {
     
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+    init() {
+        setupAuthentication()
+      }
+
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
+
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-//                MainTabView()
-                    LoginView()
-            }
+            ContentView()
         }
     }
+}
+
+extension OverCoupleAppApp {
+  private func setupAuthentication() {
+    FirebaseApp.configure()
+  }
 }

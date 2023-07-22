@@ -9,8 +9,10 @@ import SwiftUI
 
 struct UserRowView: View {
     
-    let username: String
-    let couplename: String
+//    let username: String
+//    let couplename: String
+    
+    let user: User
     
     var body: some View {
         
@@ -18,7 +20,9 @@ struct UserRowView: View {
         HStack(content: {
             
             // user image
-            Circle()
+            Image(user.profilePic)
+                .resizable()
+                .scaledToFill()
                 .frame(width: 50, height: 50)
             
             // user name & couple name & days
@@ -26,12 +30,12 @@ struct UserRowView: View {
                 // user name & couple name
                 HStack(alignment: .center, content: {
                     Spacer()
-                    Text(username)
+                    Text(user.username)
                         .foregroundColor(.pink)
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
                     Text( "with")
                         .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                    Text(couplename)
+                    Text(user.couplename ?? "")
                         .foregroundColor(.pink)
                         .font(.system(size: 20, weight: .semibold, design: .monospaced))
                     Spacer()
@@ -53,6 +57,6 @@ struct UserRowView: View {
 
 struct UserRowView_Previews: PreviewProvider {
     static var previews: some View {
-        UserRowView(username: "user name", couplename: "couple name")
+        UserRowView(user: User.MOCK_USERS[0])
     }
 }

@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 struct FeedView: View {
     
+    let user: User
+    
     @State private var showNewPostView: Bool = false
+    @EnvironmentObject var viewModel: LoginViewModel
+//    private let user = GIDSignIn.sharedInstance.currentUser
+
     
     var body: some View {
         
@@ -24,7 +30,7 @@ struct FeedView: View {
                         
                         // feed view
                         ForEach(Post.MOCK_POSTS) { post in
-                            FeedRowView(username: post.username, caption: post.caption, couplename: post.user?.couplename ?? "none")
+                            FeedRowView(post: post)
                             
                         } //: FOR EACH / feed view
                         
@@ -56,7 +62,7 @@ struct FeedView: View {
                 
                 ToolbarItem(placement: .navigationBarLeading, content: {
                     NavigationLink(destination: {
-                        SideMenuView()
+                        SideMenuView(user: user)
 
                     }, label: {
                         Image(systemName: "list.dash")
@@ -68,6 +74,7 @@ struct FeedView: View {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button(action: {
                         print("arrow.clockwise click!")
+                        viewModel.signOut()
                     }, label: {
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 20, weight: .semibold, design: .monospaced))
@@ -81,6 +88,6 @@ struct FeedView: View {
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        FeedView(user: User.MOCK_USERS[0])
     }
 }

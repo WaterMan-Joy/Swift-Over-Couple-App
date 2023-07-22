@@ -34,6 +34,11 @@
 		A8ED23652A66180100F15D2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ED23642A66180100F15D2D /* AppDelegate.swift */; };
 		A8ED23682A66192A00F15D2D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A8ED23672A66192A00F15D2D /* GoogleSignIn */; };
 		A8ED236A2A66192A00F15D2D /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A8ED23692A66192A00F15D2D /* GoogleSignInSwift */; };
+		A8F77D112A67672A00CF31DD /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D102A67672A00CF31DD /* Application.swift */; };
+		A8F77D162A680F1300CF31DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D152A680F1300CF31DD /* ContentView.swift */; };
+		A8F77D182A691B9200CF31DD /* CurrentUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D172A691B9200CF31DD /* CurrentUserView.swift */; };
+		A8F77D1D2A6A7D6B00CF31DD /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D1C2A6A7D6B00CF31DD /* ContentViewModel.swift */; };
+		A8F77D1F2A6A841400CF31DD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D1E2A6A841400CF31DD /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +68,11 @@
 		A8ED235C2A66160F00F15D2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8ED23642A66180100F15D2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8ED236B2A661A6000F15D2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A8F77D102A67672A00CF31DD /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		A8F77D152A680F1300CF31DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A8F77D172A691B9200CF31DD /* CurrentUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserView.swift; sourceTree = "<group>"; };
+		A8F77D1C2A6A7D6B00CF31DD /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		A8F77D1E2A6A841400CF31DD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +111,9 @@
 			children = (
 				A8ED236B2A661A6000F15D2D /* Info.plist */,
 				A8ED235C2A66160F00F15D2D /* GoogleService-Info.plist */,
+				A869052A2A5E44DE00C0A7FE /* Services */,
 				A8ED23632A6617E200F15D2D /* Helper */,
 				A869052B2A5E44E800C0A7FE /* Extentions */,
-				A869052A2A5E44DE00C0A7FE /* Services */,
 				A86905272A5E3ED600C0A7FE /* Model */,
 				A86905262A5E3ECD00C0A7FE /* Core */,
 				A869051B2A5E3CC600C0A7FE /* Assets.xcassets */,
@@ -135,6 +145,7 @@
 				A869053F2A5E5D0900C0A7FE /* Chat */,
 				A8C221C02A5FD79A00C9D9BA /* Profile */,
 				A8ED23552A6404A600F15D2D /* UploadPost */,
+				A8F77D192A6A7A4300CF31DD /* Root */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -169,6 +180,7 @@
 		A869052A2A5E44DE00C0A7FE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A8F77D1E2A6A841400CF31DD /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -298,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				A8C221C32A5FD7C000C9D9BA /* ProfileView.swift */,
+				A8F77D172A691B9200CF31DD /* CurrentUserView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -364,8 +377,34 @@
 			isa = PBXGroup;
 			children = (
 				A8ED23642A66180100F15D2D /* AppDelegate.swift */,
+				A8F77D102A67672A00CF31DD /* Application.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		A8F77D192A6A7A4300CF31DD /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				A8F77D1B2A6A7D1500CF31DD /* ViewModel */,
+				A8F77D1A2A6A7C8600CF31DD /* View */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		A8F77D1A2A6A7C8600CF31DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A8F77D152A680F1300CF31DD /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A8F77D1B2A6A7D1500CF31DD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A8F77D1C2A6A7D6B00CF31DD /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8C221D52A61391B00C9D9BA /* SideMenuItemRowView.swift in Sources */,
+				A8F77D1F2A6A841400CF31DD /* UserService.swift in Sources */,
 				A8ED23592A6404DC00F15D2D /* UploadPostView.swift in Sources */,
 				A8ED23652A66180100F15D2D /* AppDelegate.swift in Sources */,
 				A86905312A5E45E500C0A7FE /* FeedView.swift in Sources */,
@@ -457,13 +497,17 @@
 				A8C221C42A5FD7C000C9D9BA /* ProfileView.swift in Sources */,
 				A8C221D12A60249900C9D9BA /* SideMenuRowView.swift in Sources */,
 				A8C221CF2A60245600C9D9BA /* SideMenuView.swift in Sources */,
+				A8F77D1D2A6A7D6B00CF31DD /* ContentViewModel.swift in Sources */,
 				A8BCB9722A662814009C89D0 /* LoginViewModel.swift in Sources */,
 				A86905352A5E46A800C0A7FE /* FeedRowView.swift in Sources */,
 				A86905382A5E5A9D00C0A7FE /* MainTabView.swift in Sources */,
+				A8F77D112A67672A00CF31DD /* Application.swift in Sources */,
 				A8C221C62A5FE90400C9D9BA /* PostFilterViewModel.swift in Sources */,
+				A8F77D182A691B9200CF31DD /* CurrentUserView.swift in Sources */,
 				A86905462A5F870F00C0A7FE /* User.swift in Sources */,
 				A86905442A5E5D4500C0A7FE /* ChatView.swift in Sources */,
 				A8ED235B2A64D52D00F15D2D /* LoginView.swift in Sources */,
+				A8F77D162A680F1300CF31DD /* ContentView.swift in Sources */,
 				A86905482A5F886D00C0A7FE /* Post.swift in Sources */,
 				A86905422A5E5D2B00C0A7FE /* ExploreView.swift in Sources */,
 				A8C221C92A60157800C9D9BA /* UserRowView.swift in Sources */,
@@ -525,6 +569,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -577,6 +623,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

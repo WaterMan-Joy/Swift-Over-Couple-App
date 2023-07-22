@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SideMenuView: View {
+    
+    let user: User
+
     var body: some View {
         
         // side menu view
@@ -26,7 +29,7 @@ struct SideMenuView: View {
                 
                 if sideMenu == .profile {
                     NavigationLink {
-                        ProfileView()
+                        CurrentUserView(user: user)
                     } label: {
                         SideMenuItemRowView(viewModel: sideMenu)
                     }
@@ -36,6 +39,7 @@ struct SideMenuView: View {
                         Text("LOG OUT")
                     } label: {
                         SideMenuItemRowView(viewModel: sideMenu)
+
                     }
                 }
                 else if sideMenu == .lists {
@@ -71,6 +75,6 @@ struct SideMenuView: View {
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuView()
+        SideMenuView(user: User.MOCK_USERS[0])
     }
 }

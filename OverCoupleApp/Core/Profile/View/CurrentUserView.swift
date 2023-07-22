@@ -1,20 +1,20 @@
 //
-//  ProfileView.swift
+//  CurrentUserView.swift
 //  OverCoupleApp
 //
-//  Created by 김종희 on 2023/07/13.
+//  Created by 김종희 on 2023/07/20.
 //
 
 import SwiftUI
 
-struct ProfileView: View {
+struct CurrentUserView: View {
     
     let user: User
     
     @State private var selectedFilter: PostFilterViewModel = .myPosts
 //    @Environment(\.presentationMode) var mode
     @Namespace var animation
-            
+    
     var posts: [Post] {
         return Post.MOCK_POSTS.filter({ $0.user?.username == user.username})
     }
@@ -22,6 +22,8 @@ struct ProfileView: View {
     var body: some View {
         
         VStack(content: {
+            
+            // header view
             // user image + couple image
             ZStack(alignment: .top, content: {
                 Color(.systemPink)
@@ -32,8 +34,10 @@ struct ProfileView: View {
                     // user image
                     Image(user.profilePic)
                         .resizable()
-                        .scaledToFill()
+                        .scaledToFit()
                         .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                    
                     Text("with")
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
                         .foregroundColor(.white)
@@ -48,6 +52,7 @@ struct ProfileView: View {
             }) //: ZSTACK
             .frame(height: 100)
             
+            // user info details
             // user name + is couple? + edit profile + bio
             VStack {
                 
@@ -106,6 +111,7 @@ struct ProfileView: View {
                 
             } //: VSTACK / user name + is couple? + edit profile + bio
             
+            // post filter bar
             // my posts & our posts & like posts
             HStack(content: {
                 ForEach(PostFilterViewModel.allCases, id: \.rawValue, content: { item in
@@ -138,6 +144,7 @@ struct ProfileView: View {
                 }) //: FOREACH
             }) //: HSTACK / my posts & our posts & like posts
             
+            // posts view
             ScrollView(showsIndicators: true, content: {
                 LazyVStack(content: {
                     ForEach(posts) { post in
@@ -146,15 +153,21 @@ struct ProfileView: View {
                 }) //: LAZY VSTACK
             }) //: SCROLL VIEW
             
+            
             Spacer()
             
         }) //: VSTACK
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
+struct CurrentUserView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(user: User.MOCK_USERS[1])
+        CurrentUserView(user: User.MOCK_USERS[0])
     }
 }
+
+
+
+
+
 

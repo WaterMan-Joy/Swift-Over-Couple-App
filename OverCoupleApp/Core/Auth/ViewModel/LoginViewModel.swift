@@ -7,72 +7,89 @@
 
 import SwiftUI
 import Firebase
+import GoogleSignIn
+
 
 class LoginViewModel: ObservableObject {
     
     // view properties
-    @Published var mobileNum: String = ""
-    @Published var otpCode: String = ""
+//    @Published var isLogin: Bool = false
     
-    @Published var CLIENT_CODE: String = ""
-    @Published var showOTPField: Bool = false
     
-    // error properties
-    @Published var showError: Bool = false
-    @Published var errorMessage: String = ""
+    @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User?
     
-    // firebase api's
-    func getOTPCode() {
-        UIApplication.shared.closeKeyBoard()
-        Task {
-            do {
-                // disable it when testing with real device
-                Auth.auth().settings?.isAppVerificationDisabledForTesting = true
-                
-                let code = try await PhoneAuthProvider.provider().verifyPhoneNumber("+8210\(mobileNum)", uiDelegate: nil)
-                await MainActor.run(body: {
-                    CLIENT_CODE = code
-                    
-                    withAnimation(.easeInOut) { showOTPField = true}
-                })
-            }
-            catch {
-                await handleError(error: error)
-            }
-        }
+    static let shared = LoginViewModel()
+    
+    // login status
+    enum SignInState {
+        case signedIn
+        case signedOut
+      }
+    @Published var state: SignInState = .signedOut
+    
+    init() {
+        
     }
     
-    func verifyOTPCode() {
-        UIApplication.shared.closeKeyBoard()
-        Task {
-            do {
-                let credential = PhoneAuthProvider.provider().credential(withVerificationID: CLIENT_CODE, verificationCode: otpCode)
-                
-                try await Auth.auth().signIn(with: credential)
-                
-                print("Success!!")
-            }
+    func loadUserData() async throws {
+//            self.userSession = Auth.auth().currentUser
+//            guard let currentUid = userSession?.uid else {return}
+//            self.currentUser = try await UserService.fetchUser(withUid: currentUid)
+
+        }
+    
+    // sign in
+    func signUpWithGoogle() {
+        
+        // get app client id
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: ApplicationHelper.rootViewController) {  result, error in
+            guard error == nil else {return}
             
-            catch {
-                await handleError(error: error)
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {return}
+            print("USER : \(user)")
 
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            
+            Auth.auth().signIn(with: credential) { [unowned self] result, error in
+                
+                // At this point, our user is signed in
+                if let err = error {
+                    print(err.localizedDescription)
+                    return
+                } else {
+                    print(state)
+                }
+                
+                guard let user = result?.user else {return}
+                self.userSession = result?.user
+                state = .signedIn
+                print(state)
+                print(user)
+                print(user.displayName ?? "")
+                print(user.email ?? "")
+                print(user.photoURL ?? "")
             }
         }
+    } //: sign in
+    
+    // sign out
+    func signOut() {
+        GIDSignIn.sharedInstance.signOut()
+        do {
+            try Auth.auth().signOut()
+            self.userSession = nil
+            self.state = .signedOut
+          } catch {
+            print(error.localizedDescription)
+          }
     }
     
-    
-    // handling error
-    func handleError(error: Error) async {
-        await MainActor.run(body: {
-            errorMessage = error.localizedDescription
-            showError.toggle()
-        })
-    }
-}
-
-// extensions
-extension UIApplication {
-    func closeKeyBoard() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
 }

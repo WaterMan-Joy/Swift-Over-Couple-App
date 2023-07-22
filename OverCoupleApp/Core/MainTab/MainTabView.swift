@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MainTabView: View {
-    
+
     @State private var selectedIndex: Int = 0
+    
     var body: some View {
         TabView(selection: $selectedIndex, content: {
-            FeedView()
+            FeedView(user: User.MOCK_USERS[1])
                 .onTapGesture {
                     self.selectedIndex = 0
                 }
@@ -44,7 +45,7 @@ struct MainTabView: View {
                     Image(systemName: "bell.circle")
                 }).tag(3)
             
-            ProfileView()
+            CurrentUserView(user: User.MOCK_USERS[1])
                 .navigationBarBackButtonHidden(true)
                 .onTapGesture {
                     self.selectedIndex = 4

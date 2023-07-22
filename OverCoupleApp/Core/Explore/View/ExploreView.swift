@@ -22,9 +22,9 @@ struct ExploreView: View {
                         
                         ForEach(User.MOCK_USERS, content: { user in
                             NavigationLink(destination: {
-                                ProfileView()
+                                ProfileView(user: user)
                             }, label: {
-                                UserRowView(username: user.username, couplename: user.couplename ?? "")
+                                UserRowView(user: user)
                             }) //: NAVIGATION LINK
                             
                         }) //: FOR EACH
