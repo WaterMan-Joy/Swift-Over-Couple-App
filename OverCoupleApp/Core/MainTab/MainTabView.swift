@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct MainTabView: View {
+    
+    let user: User
 
     @State private var selectedIndex: Int = 0
     
     
-    let currentUser = User.MOCK_USERS[1]
+   
     
     var body: some View {
         TabView(selection: $selectedIndex, content: {
-            FeedView(user: currentUser)
+            FeedView(user: user)
                 .onAppear {
                     self.selectedIndex = 0
                 }
@@ -48,7 +50,7 @@ struct MainTabView: View {
                     Image(systemName: "bell.circle")
                 }).tag(3)
             
-            CurrentUserView(user: currentUser)
+            CurrentUserView(user: user)
                 .navigationBarBackButtonHidden(true)
                 .onAppear {
                     self.selectedIndex = 4
@@ -62,6 +64,6 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
+        MainTabView(user: User.MOCK_USERS[0])
     }
 }

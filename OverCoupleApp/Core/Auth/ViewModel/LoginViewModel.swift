@@ -31,25 +31,23 @@ class LoginViewModel: ObservableObject {
     @Published var state: SignInState = .signedOut
     
     init() {
-        self.userSession = Auth.auth().currentUser
-    }
-    
-    func loadUserData() async throws {
-//            self.userSession = Auth.auth().currentUser
-//            guard let currentUid = userSession?.uid else {return}
-//            self.currentUser = try await UserService.fetchUser(withUid: currentUid)
-
+        Task {
+            try await loadUserData()
         }
-    
-    private func uploadUserData(uid: String, username: String, email: String, profilePic: String) async {
-        let user = User(id: uid, username: username, email: email, profilePic: profilePic, bio: nil, couplename: nil, couple: false)
-        guard let encodedUser = try? Firestore.Encoder().encode(user) else {return}
-        
-        try? await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
     }
     
+    @MainActor
+    func loadUserData() async throws {
+        self.userSession = Auth.auth().currentUser
+        guard let currentUid = userSession?.uid else {return}
+        let snapshot = try await Firestore.firestore().collection("users").document(currentUid).getDocument()
+        self.currentUser = try? snapshot.data(as: User.self)
+    }
+    
+
     // sign in
-    func signUpWithGoogle() {
+    @MainActor
+    func signUpWithGoogle() async throws{
         
         // get app client id
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
@@ -67,7 +65,7 @@ class LoginViewModel: ObservableObject {
 
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
             //[unowned self]
-            Auth.auth().signIn(with: credential) {[unowned self] result, error in
+            Auth.auth().signIn(with: credential) { [unowned self] result, error in
                 
                 // At this point, our user is signed in
                 if let err = error {
@@ -80,16 +78,17 @@ class LoginViewModel: ObservableObject {
                 
                 guard let user = result?.user else {return}
                 let userData = User(id: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "", bio: nil, couplename: nil, couple: false)
+                self.currentUser = userData
                 guard let encodedUser = try? Firestore.Encoder().encode(userData) else {return}
                 Firestore.firestore().collection("users").document(userData.id).setData(encodedUser)
+                
 //                self.uploadUserData(uid: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "")
                 self.userSession = result?.user
                 state = .signedIn
                 print(state)
                 print(user)
                 print(user.displayName ?? "")
-                print(user.email ?? "")
-                print(user.photoURL ?? "")
+                
             }
         }
     } //: sign in
@@ -101,6 +100,7 @@ class LoginViewModel: ObservableObject {
             try Auth.auth().signOut()
             self.state = .signedOut
             self.userSession = nil
+            self.currentUser = nil
           } catch {
             print(error.localizedDescription)
           }

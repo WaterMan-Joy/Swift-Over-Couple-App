@@ -37,15 +37,20 @@ struct CurrentUserView: View {
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
-                    
                     Text("with")
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
                         .foregroundColor(.white)
                         .padding()
-                    
-                    // couple image
-                    Circle()
-                        .frame(width: 100)
+                    if user.couple {
+                        // couple image
+                        Circle()
+                            .frame(width: 100)
+                    }
+                    else if !user.couple {
+                        Image(systemName: "person.fill")
+                            .frame(width: 100, height: 100)
+
+                    }
                 })
                 .offset(y: -20)
                 

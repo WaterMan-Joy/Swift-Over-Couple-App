@@ -56,7 +56,7 @@ struct FeedView: View {
                 })
                 
             }) //: ZSTACK
-            .navigationTitle("FEED")
+            .navigationTitle("\(user.username) HOME")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 

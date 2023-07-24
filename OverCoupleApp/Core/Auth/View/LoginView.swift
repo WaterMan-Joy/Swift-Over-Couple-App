@@ -35,7 +35,9 @@ struct LoginView: View {
                 
                 Button(action: {
                     print("sign up with google")
-                    viewModel.service.signUpWithGoogle()
+                    Task {
+                        try await viewModel.service.signUpWithGoogle()
+                    }
                 }, label: {
                     HStack(content: {
                         Image(systemName: "g.circle.fill")
