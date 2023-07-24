@@ -8,6 +8,8 @@
 import SwiftUI
 import Firebase
 import GoogleSignIn
+import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 
 class LoginViewModel: ObservableObject {
@@ -39,6 +41,13 @@ class LoginViewModel: ObservableObject {
 
         }
     
+    private func uploadUserData(uid: String, username: String, email: String, profilePic: String) async {
+        let user = User(id: uid, username: username, email: email, profilePic: profilePic, bio: nil, couplename: nil, couple: false)
+        guard let encodedUser = try? Firestore.Encoder().encode(user) else {return}
+        
+        try? await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
+    }
+    
     // sign in
     func signUpWithGoogle() {
         
@@ -50,15 +59,15 @@ class LoginViewModel: ObservableObject {
         GIDSignIn.sharedInstance.configuration = config
 
         // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: ApplicationHelper.rootViewController) {  result, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: ApplicationHelper.rootViewController) {[unowned self]  result, error in
             guard error == nil else {return}
             
             guard let user = result?.user, let idToken = user.idToken?.tokenString else {return}
             print("USER : \(user)")
 
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
-            
-            Auth.auth().signIn(with: credential) { [unowned self] result, error in
+            //[unowned self]
+            Auth.auth().signIn(with: credential) {[unowned self] result, error in
                 
                 // At this point, our user is signed in
                 if let err = error {
@@ -68,7 +77,12 @@ class LoginViewModel: ObservableObject {
                     print(state)
                 }
                 
+                
                 guard let user = result?.user else {return}
+                let userData = User(id: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "", bio: nil, couplename: nil, couple: false)
+                guard let encodedUser = try? Firestore.Encoder().encode(userData) else {return}
+                Firestore.firestore().collection("users").document(userData.id).setData(encodedUser)
+//                self.uploadUserData(uid: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "")
                 self.userSession = result?.user
                 state = .signedIn
                 print(state)
