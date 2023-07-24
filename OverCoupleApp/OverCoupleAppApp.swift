@@ -17,11 +17,14 @@ struct OverCoupleAppApp: App {
       }
 
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var viewModel = ContentViewModel()
 
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
+
         }
     }
 }

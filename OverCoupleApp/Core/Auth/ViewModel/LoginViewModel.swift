@@ -29,7 +29,7 @@ class LoginViewModel: ObservableObject {
     @Published var state: SignInState = .signedOut
     
     init() {
-        
+        self.userSession = Auth.auth().currentUser
     }
     
     func loadUserData() async throws {
@@ -85,8 +85,8 @@ class LoginViewModel: ObservableObject {
         GIDSignIn.sharedInstance.signOut()
         do {
             try Auth.auth().signOut()
-            self.userSession = nil
             self.state = .signedOut
+            self.userSession = nil
           } catch {
             print(error.localizedDescription)
           }

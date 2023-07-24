@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SideMenuRowView: View {
+    
+    let user: User
+    
     var body: some View {
         // side menu view
         VStack {
@@ -17,10 +20,13 @@ struct SideMenuRowView: View {
                 
                 // user name & user image
                 VStack(content: {
-                    Circle()
+                    Image(user.profilePic)
+                        .resizable()
+                        .scaledToFit()
                         .frame(width: 50, height: 50)
+                        .clipShape(Circle())
                     
-                    Text(User.MOCK_USERS[0].username)
+                    Text(user.username)
                         .font(.system(size: 30, weight: .bold, design: .monospaced))
                 }) //: VSTACK / user name & user image
                 
@@ -32,7 +38,7 @@ struct SideMenuRowView: View {
                     Circle()
                         .frame(width: 50, height: 50)
                     
-                    Text(User.MOCK_USERS[0].couplename ?? "")
+                    Text(user.couplename ?? "")
                         .font(.system(size: 30, weight: .bold, design: .monospaced))
                 }) //: VSTACK / couple name & couple image
                 
@@ -44,6 +50,6 @@ struct SideMenuRowView: View {
 
 struct SideMenuRowView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuRowView()
+        SideMenuRowView(user: User.MOCK_USERS[0])
     }
 }

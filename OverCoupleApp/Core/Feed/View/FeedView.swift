@@ -13,9 +13,9 @@ struct FeedView: View {
     let user: User
     
     @State private var showNewPostView: Bool = false
-    @EnvironmentObject var viewModel: LoginViewModel
-//    private let user = GIDSignIn.sharedInstance.currentUser
-
+    @EnvironmentObject var viewModel: ContentViewModel
+//    let user = GIDSignIn.sharedInstance.currentUser
+    
     
     var body: some View {
         
@@ -63,6 +63,7 @@ struct FeedView: View {
                 ToolbarItem(placement: .navigationBarLeading, content: {
                     NavigationLink(destination: {
                         SideMenuView(user: user)
+                            .environmentObject(viewModel)
 
                     }, label: {
                         Image(systemName: "list.dash")
@@ -74,7 +75,7 @@ struct FeedView: View {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button(action: {
                         print("arrow.clockwise click!")
-                        viewModel.signOut()
+                        
                     }, label: {
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 20, weight: .semibold, design: .monospaced))

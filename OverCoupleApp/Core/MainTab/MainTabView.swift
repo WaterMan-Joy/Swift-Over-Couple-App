@@ -11,10 +11,13 @@ struct MainTabView: View {
 
     @State private var selectedIndex: Int = 0
     
+    
+    let currentUser = User.MOCK_USERS[1]
+    
     var body: some View {
         TabView(selection: $selectedIndex, content: {
-            FeedView(user: User.MOCK_USERS[1])
-                .onTapGesture {
+            FeedView(user: currentUser)
+                .onAppear {
                     self.selectedIndex = 0
                 }
                 .tabItem({
@@ -22,7 +25,7 @@ struct MainTabView: View {
                 }).tag(0)
             
             ExploreView()
-                .onTapGesture {
+                .onAppear() {
                     self.selectedIndex = 1
                 }
                 .tabItem({
@@ -30,7 +33,7 @@ struct MainTabView: View {
                 }).tag(1)
             
             ChatView()
-                .onTapGesture {
+                .onAppear {
                     self.selectedIndex = 2
                 }
                 .tabItem({
@@ -38,16 +41,16 @@ struct MainTabView: View {
                 }).tag(2)
             
             NotificationView()
-                .onTapGesture {
+                .onAppear {
                     self.selectedIndex = 3
                 }
                 .tabItem({
                     Image(systemName: "bell.circle")
                 }).tag(3)
             
-            CurrentUserView(user: User.MOCK_USERS[1])
+            CurrentUserView(user: currentUser)
                 .navigationBarBackButtonHidden(true)
-                .onTapGesture {
+                .onAppear {
                     self.selectedIndex = 4
                 }
                 .tabItem({

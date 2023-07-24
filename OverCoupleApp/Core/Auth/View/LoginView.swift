@@ -12,7 +12,7 @@ import GoogleSignIn
 
 struct LoginView: View {
     
-    @EnvironmentObject var viewModel: LoginViewModel
+    @EnvironmentObject var viewModel: ContentViewModel
     
     var body: some View {
         
@@ -30,21 +30,12 @@ struct LoginView: View {
                 Text("ONLY ENG")
                 Spacer()
                 
-//                GoogleSignInButton()
-//                    .padding()
-//                            .onTapGesture {
-//                              viewModel.signUpWithGoogle()
-//                            }
-                
-                Text("GOOGLE GOGO")
-                    .onTapGesture {
-                        viewModel.signUpWithGoogle()
-                    }
+
                 
                 
                 Button(action: {
-                    print("")
-                    viewModel.signUpWithGoogle()
+                    print("sign up with google")
+                    viewModel.service.signUpWithGoogle()
                 }, label: {
                     HStack(content: {
                         Image(systemName: "g.circle.fill")
@@ -66,23 +57,11 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
-
-//struct GoogleSignInButton: UIViewRepresentable {
-//  @Environment(\.colorScheme) var colorScheme
+//struct LoginView_Previews: PreviewProvider {
 //
-//  private var button = GIDSignInButton()
+//    static var previews: some View {
+//        LoginView()
 //
-//  func makeUIView(context: Context) -> GIDSignInButton {
-//    button.colorScheme = colorScheme == .dark ? .dark : .light
-//    return button
-//  }
-//
-//  func updateUIView(_ uiView: UIViewType, context: Context) {
-//    button.colorScheme = colorScheme == .dark ? .dark : .light
-//  }
+//    }
 //}
+

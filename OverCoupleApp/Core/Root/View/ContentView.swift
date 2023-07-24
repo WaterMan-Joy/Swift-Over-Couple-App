@@ -10,17 +10,16 @@ import SwiftUI
 struct ContentView: View {
     
 //    @EnvironmentObject var viewModel: LoginViewModel
-    @StateObject var loginViewModel = LoginViewModel()
+    @StateObject var viewModel = ContentViewModel()
 
     var body: some View {
-        NavigationStack {
-            if loginViewModel.userSession == nil {
+        Group {
+            if viewModel.userSession == nil {
                 LoginView()
-                    .environmentObject(loginViewModel)
             }
             else {
                 MainTabView()
-                    .environmentObject(loginViewModel)
+                    
             }
 //            switch loginViewModel.state {
 //                case .signedIn: MainTabView()

@@ -10,6 +10,7 @@ import SwiftUI
 struct SideMenuView: View {
     
     let user: User
+    @EnvironmentObject var viewModel: ContentViewModel
 
     var body: some View {
         
@@ -18,7 +19,7 @@ struct SideMenuView: View {
             
             // user name + user image + couple name + couple image
             VStack(alignment: .leading, content: {
-                SideMenuRowView()
+                SideMenuRowView(user: user)
             })
             .padding(.all, 50)
             .background(.pink)
@@ -32,14 +33,6 @@ struct SideMenuView: View {
                         CurrentUserView(user: user)
                     } label: {
                         SideMenuItemRowView(viewModel: sideMenu)
-                    }
-                }
-                else if sideMenu == .logout {
-                    NavigationLink {
-                        Text("LOG OUT")
-                    } label: {
-                        SideMenuItemRowView(viewModel: sideMenu)
-
                     }
                 }
                 else if sideMenu == .lists {
@@ -65,6 +58,12 @@ struct SideMenuView: View {
                 }
 
             } //: FOR EACH / sie menus
+            
+            Button(action: {
+                viewModel.service.signOut()
+            }, label: {
+                Text("LOG OUT")
+            })
             
             Spacer()
             
