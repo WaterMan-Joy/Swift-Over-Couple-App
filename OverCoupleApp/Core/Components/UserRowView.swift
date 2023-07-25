@@ -35,20 +35,30 @@ struct UserRowView: View {
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
                     Text( "with")
                         .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                    Text(user.couplename ?? "")
+                    Text(user.couplename ?? "??")
                         .foregroundColor(.pink)
                         .font(.system(size: 20, weight: .semibold, design: .monospaced))
                     Spacer()
                 }) //: HSTACK / user name & couple name
                 
                 // days
-                Text("63 days")
-                    .font(.system(size: 15, weight: .semibold, design: .monospaced))
+                if user.couple {
+                    Text("63 days")
+                        .font(.system(size: 15, weight: .semibold, design: .monospaced))
+                }
+                else {
+                    Text("0 days")
+                        .font(.system(size: 15, weight: .semibold, design: .monospaced))
+                }
             }) //: VSTACK / user name + couple name + days
             
             // couple image
-            Circle()
-                .frame(width: 50, height: 50)
+            if user.couple {
+                Text("Yes")
+            }
+            else {
+                Image(systemName: "person")
+            }
             
         }) //: HSTACK / user image + user name + couple name + days
         .padding()

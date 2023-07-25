@@ -13,7 +13,6 @@ struct UploadPostView: View {
     @State private var caption: String = ""
     @State private var imagePickerPresented = false
     @StateObject var viewModel = UploadPostViewModel()
-//    @Environment(\.presentationMode) var presentationMode
     @Environment(\.dismiss) var dismiss
     
     var body: some View {

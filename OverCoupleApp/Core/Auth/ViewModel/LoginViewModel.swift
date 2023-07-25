@@ -57,7 +57,7 @@ class LoginViewModel: ObservableObject {
         GIDSignIn.sharedInstance.configuration = config
 
         // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: ApplicationHelper.rootViewController) {[unowned self]  result, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: ApplicationHelper.rootViewController) { result, error in
             guard error == nil else {return}
             
             guard let user = result?.user, let idToken = user.idToken?.tokenString else {return}
@@ -81,14 +81,9 @@ class LoginViewModel: ObservableObject {
                 self.currentUser = userData
                 guard let encodedUser = try? Firestore.Encoder().encode(userData) else {return}
                 Firestore.firestore().collection("users").document(userData.id).setData(encodedUser)
-                
-//                self.uploadUserData(uid: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "")
                 self.userSession = result?.user
                 state = .signedIn
                 print(state)
-                print(user)
-                print(user.displayName ?? "")
-                
             }
         }
     } //: sign in

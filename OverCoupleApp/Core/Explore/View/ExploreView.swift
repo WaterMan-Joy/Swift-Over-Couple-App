@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ExploreView: View {
+    
+    @StateObject var viewModel = ExploreViewModel()
     var body: some View {
         
         // explore view
@@ -20,7 +22,7 @@ struct ExploreView: View {
                     
                     LazyVStack(content: {
                         
-                        ForEach(User.MOCK_USERS, content: { user in
+                        ForEach(viewModel.users, content: { user in
                             NavigationLink(destination: {
                                 ProfileView(user: user)
                             }, label: {

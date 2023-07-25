@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import PhotosUI
+import SwiftUI
+
 
 enum PostFilterViewModel: Int, CaseIterable {
     case myPosts
@@ -20,3 +23,5 @@ enum PostFilterViewModel: Int, CaseIterable {
         }
     }
 }
+
+

@@ -43,6 +43,9 @@
 		A8F77D242A6E6D4500CF31DD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A8F77D232A6E6D4500CF31DD /* FirebaseFirestore */; };
 		A8F77D262A6E6D4F00CF31DD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A8F77D252A6E6D4F00CF31DD /* FirebaseFirestoreSwift */; };
 		A8F77D282A6E6D5C00CF31DD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A8F77D272A6E6D5C00CF31DD /* FirebaseStorage */; };
+		A8F77D2A2A6F484C00CF31DD /* ExplporeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D292A6F484C00CF31DD /* ExplporeViewModel.swift */; };
+		A8F77D2C2A6F6ABC00CF31DD /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D2B2A6F6ABC00CF31DD /* EditProfileView.swift */; };
+		A8F77D2E2A6F751F00CF31DD /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D2D2A6F751F00CF31DD /* EditProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +81,9 @@
 		A8F77D1C2A6A7D6B00CF31DD /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		A8F77D1E2A6A841400CF31DD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		A8F77D202A6B6D1100CF31DD /* UploadPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewModel.swift; sourceTree = "<group>"; };
+		A8F77D292A6F484C00CF31DD /* ExplporeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplporeViewModel.swift; sourceTree = "<group>"; };
+		A8F77D2B2A6F6ABC00CF31DD /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		A8F77D2D2A6F751F00CF31DD /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				A8C221C52A5FE90400C9D9BA /* PostFilterViewModel.swift */,
+				A8F77D2D2A6F751F00CF31DD /* EditProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -320,6 +327,7 @@
 			children = (
 				A8C221C32A5FD7C000C9D9BA /* ProfileView.swift */,
 				A8F77D172A691B9200CF31DD /* CurrentUserView.swift */,
+				A8F77D2B2A6F6ABC00CF31DD /* EditProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,6 +335,7 @@
 		A8C221C72A60155600C9D9BA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A8F77D292A6F484C00CF31DD /* ExplporeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -513,6 +522,7 @@
 				A8ED23592A6404DC00F15D2D /* UploadPostView.swift in Sources */,
 				A8ED23652A66180100F15D2D /* AppDelegate.swift in Sources */,
 				A86905312A5E45E500C0A7FE /* FeedView.swift in Sources */,
+				A8F77D2E2A6F751F00CF31DD /* EditProfileViewModel.swift in Sources */,
 				A86905182A5E3CC500C0A7FE /* OverCoupleAppApp.swift in Sources */,
 				A8C221C42A5FD7C000C9D9BA /* ProfileView.swift in Sources */,
 				A8C221D12A60249900C9D9BA /* SideMenuRowView.swift in Sources */,
@@ -522,6 +532,7 @@
 				A86905352A5E46A800C0A7FE /* FeedRowView.swift in Sources */,
 				A86905382A5E5A9D00C0A7FE /* MainTabView.swift in Sources */,
 				A8F77D112A67672A00CF31DD /* Application.swift in Sources */,
+				A8F77D2C2A6F6ABC00CF31DD /* EditProfileView.swift in Sources */,
 				A8C221C62A5FE90400C9D9BA /* PostFilterViewModel.swift in Sources */,
 				A8F77D182A691B9200CF31DD /* CurrentUserView.swift in Sources */,
 				A86905462A5F870F00C0A7FE /* User.swift in Sources */,
@@ -531,6 +542,7 @@
 				A86905482A5F886D00C0A7FE /* Post.swift in Sources */,
 				A86905422A5E5D2B00C0A7FE /* ExploreView.swift in Sources */,
 				A8C221C92A60157800C9D9BA /* UserRowView.swift in Sources */,
+				A8F77D2A2A6F484C00CF31DD /* ExplporeViewModel.swift in Sources */,
 				A8C221D32A6024BC00C9D9BA /* SideMenuViewModel.swift in Sources */,
 				A869053C2A5E5C9000C0A7FE /* NotificationView.swift in Sources */,
 				A8F77D212A6B6D1100CF31DD /* UploadPostViewModel.swift in Sources */,

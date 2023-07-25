@@ -10,7 +10,8 @@ import SwiftUI
 struct CurrentUserView: View {
     
     let user: User
-    
+    @State private var showEditProfile: Bool = false
+
     @State private var selectedFilter: PostFilterViewModel = .myPosts
 //    @Environment(\.presentationMode) var mode
     @Namespace var animation
@@ -49,7 +50,6 @@ struct CurrentUserView: View {
                     else if !user.couple {
                         Image(systemName: "person.fill")
                             .frame(width: 100, height: 100)
-
                     }
                 })
                 .offset(y: -20)
@@ -94,7 +94,7 @@ struct CurrentUserView: View {
                     
                     // edit profile
                     Button(action: {
-                        print("edit profile")
+                        showEditProfile.toggle()
                     }, label: {
                         Text("EDIT PROFILE")
                             .foregroundColor(.white)
@@ -162,6 +162,9 @@ struct CurrentUserView: View {
             Spacer()
             
         }) //: VSTACK
+        .fullScreenCover(isPresented: $showEditProfile, content: {
+            EditProfileView()
+        })
     }
 }
 

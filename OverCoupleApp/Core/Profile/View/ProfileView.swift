@@ -10,7 +10,8 @@ import SwiftUI
 struct ProfileView: View {
     
     let user: User
-    
+    @State private var showEditProfile: Bool = false
+
     @State private var selectedFilter: PostFilterViewModel = .myPosts
 //    @Environment(\.presentationMode) var mode
     @Namespace var animation
@@ -42,6 +43,11 @@ struct ProfileView: View {
                     // couple image
                     Circle()
                         .frame(width: 100)
+                        .overlay(content: {
+                            Text("신청하기")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20, weight: .bold, design: .monospaced))
+                        })
                 })
                 .offset(y: -20)
                 
@@ -84,14 +90,19 @@ struct ProfileView: View {
                     
                     // edit profile
                     Button(action: {
-                        print("edit profile")
+                        if user.isCurrentUser {
+                            print("show edit profile")
+                            self.showEditProfile.toggle()
+                        } else {
+                            print("follow user")
+                        }
                     }, label: {
-                        Text("EDIT PROFILE")
+                        Text(user.isCurrentUser ? "EDIT PROFILE" : "FOLLOW")
                             .foregroundColor(.white)
                             .font(.system(size: 20, weight: .bold, design: .monospaced))
                             .padding(.horizontal, 20)
                             .padding(.vertical, 10)
-                            .background(.pink)
+                            .background(user.isCurrentUser ? .pink : .blue)
                             .cornerRadius(10)
                     }) //: BUTTON / edit profile button
                 }) //: HSTACK
@@ -149,6 +160,9 @@ struct ProfileView: View {
             Spacer()
             
         }) //: VSTACK
+        .fullScreenCover(isPresented: $showEditProfile, content: {
+            EditProfileView()
+        })
     }
 }
 
