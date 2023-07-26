@@ -46,6 +46,7 @@
 		A8F77D2A2A6F484C00CF31DD /* ExplporeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D292A6F484C00CF31DD /* ExplporeViewModel.swift */; };
 		A8F77D2C2A6F6ABC00CF31DD /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D2B2A6F6ABC00CF31DD /* EditProfileView.swift */; };
 		A8F77D2E2A6F751F00CF31DD /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D2D2A6F751F00CF31DD /* EditProfileViewModel.swift */; };
+		A8F77D302A6FBDEA00CF31DD /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D2F2A6FBDEA00CF31DD /* ImageUploader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		A8F77D292A6F484C00CF31DD /* ExplporeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplporeViewModel.swift; sourceTree = "<group>"; };
 		A8F77D2B2A6F6ABC00CF31DD /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		A8F77D2D2A6F751F00CF31DD /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		A8F77D2F2A6FBDEA00CF31DD /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				A8F77D1E2A6A841400CF31DD /* UserService.swift */,
+				A8F77D2F2A6FBDEA00CF31DD /* ImageUploader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				A8F77D112A67672A00CF31DD /* Application.swift in Sources */,
 				A8F77D2C2A6F6ABC00CF31DD /* EditProfileView.swift in Sources */,
 				A8C221C62A5FE90400C9D9BA /* PostFilterViewModel.swift in Sources */,
+				A8F77D302A6FBDEA00CF31DD /* ImageUploader.swift in Sources */,
 				A8F77D182A691B9200CF31DD /* CurrentUserView.swift in Sources */,
 				A86905462A5F870F00C0A7FE /* User.swift in Sources */,
 				A86905442A5E5D4500C0A7FE /* ChatView.swift in Sources */,

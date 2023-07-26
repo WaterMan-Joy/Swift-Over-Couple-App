@@ -161,7 +161,7 @@ struct ProfileView: View {
             
         }) //: VSTACK
         .fullScreenCover(isPresented: $showEditProfile, content: {
-            EditProfileView()
+            EditProfileView(user: user)
         })
     }
 }

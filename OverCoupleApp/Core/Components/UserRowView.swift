@@ -31,12 +31,10 @@ struct UserRowView: View {
                 HStack(alignment: .center, content: {
                     Spacer()
                     Text(user.username)
-                        .foregroundColor(.pink)
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
-                    Text( "with")
+                    Text(user.couple ? user.couplename ?? "WITH" : "")
                         .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                    Text(user.couplename ?? "??")
-                        .foregroundColor(.pink)
+                    Text(user.couple ? user.couplename ?? "" : "는 사랑하고 싶어요")
                         .font(.system(size: 20, weight: .semibold, design: .monospaced))
                     Spacer()
                 }) //: HSTACK / user name & couple name
@@ -57,10 +55,17 @@ struct UserRowView: View {
                 Text("Yes")
             }
             else {
-                Image(systemName: "person")
+                Image(systemName: "person.crop.circle.badge.questionmark.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height: 30)
             }
             
         }) //: HSTACK / user image + user name + couple name + days
+        .padding()
+        .background(.pink)
+        .foregroundColor(.white)
+        .cornerRadius(10)
         .padding()
     }
 }

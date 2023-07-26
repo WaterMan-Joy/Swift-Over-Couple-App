@@ -17,9 +17,9 @@ enum PostFilterViewModel: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .myPosts: return "MY POSTS"
-        case .ourPosts: return "OUR POSTS"
-        case .likePosts: return "LIKE POSTS"
+        case .myPosts: return "내 글"
+        case .ourPosts: return "우리 글"
+        case .likePosts: return "좋아요 글"
         }
     }
 }

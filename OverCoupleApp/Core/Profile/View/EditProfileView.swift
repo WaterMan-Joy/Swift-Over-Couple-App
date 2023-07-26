@@ -10,15 +10,18 @@ import PhotosUI
 
 struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel: EditProfileViewModel
     
-    @StateObject var viewModel = EditProfileViewModel()
+    init(user: User) {
+        self._viewModel = StateObject(wrappedValue: EditProfileViewModel(user: user))
+    }
     var body: some View {
         VStack(content: {
             
             // tool bar
             HStack(content: {
                 Button(action: {
-                    print("cancel click")
+                    print("CANCEL CLICK")
                     dismiss()
                 }, label: {
                     Text("취소")
@@ -27,7 +30,11 @@ struct EditProfileView: View {
                 Text("프로필 수정")
                 Spacer()
                 Button(action: {
-                    print("complete click")
+                    print("COMPLETE CLICK")
+                    Task {
+                        try await viewModel.updateUserData()
+                        dismiss()
+                    }
                 }, label: {
                     Text("완료")
                 })
@@ -79,6 +86,8 @@ struct EditProfileView: View {
                         .textFieldStyle(.roundedBorder)
                         .padding()
                 })
+                Text("사랑하고 있다 없다?")
+                Text("내 사랑은 : ")
             })
             .font(.system(size: 20, weight: .semibold, design: .monospaced))
             .padding()
@@ -89,6 +98,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView()
+        EditProfileView(user: User.MOCK_USERS[0])
     }
 }

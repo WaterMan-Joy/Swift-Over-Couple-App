@@ -38,7 +38,7 @@ struct CurrentUserView: View {
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
-                    Text("with")
+                    Text("WITH")
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
                         .foregroundColor(.white)
                         .padding()
@@ -47,8 +47,10 @@ struct CurrentUserView: View {
                         Circle()
                             .frame(width: 100)
                     }
-                    else if !user.couple {
-                        Image(systemName: "person.fill")
+                    else {
+                        Image(systemName: "person.crop.circle.badge.questionmark")
+                            .resizable()
+                            .scaledToFit()
                             .frame(width: 100, height: 100)
                     }
                 })
@@ -72,14 +74,15 @@ struct CurrentUserView: View {
                                 .font(.system(size: 30, weight: .bold, design: .monospaced))
                             // is couple?
                             Image(systemName: "heart.circle")
+                                .foregroundColor(.pink)
                                 .font(.system(size: 30, weight: .bold, design: .monospaced))
                         }) //: HSTACK / user name & is couple?
                         
                         // user name + couple name
                         VStack(content: {
-                            Text("with")
+                            Text("\(user.couple ? "WITH" : "")")
                                 .font(.system(size: 20, weight: .bold, design: .monospaced))
-                            Text(user.couplename ?? "no couple")
+                            Text(user.couple ? user.couplename ?? "" : "빛나는 솔로") 
                                 .font(.system(size: 25, weight: .bold, design: .monospaced))
                             Image(systemName: "heart.circle")
                                 .font(.system(size: 30, weight: .bold, design: .monospaced))
@@ -96,7 +99,7 @@ struct CurrentUserView: View {
                     Button(action: {
                         showEditProfile.toggle()
                     }, label: {
-                        Text("EDIT PROFILE")
+                        Text("프로필 수정")
                             .foregroundColor(.white)
                             .font(.system(size: 20, weight: .bold, design: .monospaced))
                             .padding(.horizontal, 20)
@@ -108,7 +111,7 @@ struct CurrentUserView: View {
                 .padding()
                 
                 // bio
-                Text("\(user.bio ?? "no bio")")
+                Text("\(user.bio ?? "설명 없음")")
                     .font(.system(size: 15, weight: .semibold, design: .monospaced))
                 
                 Divider()
@@ -124,7 +127,7 @@ struct CurrentUserView: View {
                     Spacer()
                     VStack(content: {
                         Text(item.title)
-                            .font(.system(size: 20, weight: selectedFilter == item ? .semibold : .regular, design: .monospaced))
+                            .font(.system(size: 15, weight: selectedFilter == item ? .semibold : .regular, design: .monospaced))
                             .foregroundColor(selectedFilter == item ? .black : .gray)
                         
                         if selectedFilter == item {
@@ -163,7 +166,7 @@ struct CurrentUserView: View {
             
         }) //: VSTACK
         .fullScreenCover(isPresented: $showEditProfile, content: {
-            EditProfileView()
+            EditProfileView(user: user)
         })
     }
 }
