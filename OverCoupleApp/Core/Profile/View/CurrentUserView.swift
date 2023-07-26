@@ -33,26 +33,18 @@ struct CurrentUserView: View {
                 HStack(content: {
                     
                     // user image
-                    Image(user.profilePic)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                        .clipShape(Circle())
-                    Text("WITH")
-                        .font(.system(size: 20, weight: .bold, design: .monospaced))
-                        .foregroundColor(.white)
-                        .padding()
+                    CircularProfileImageView(user: user)
+                    
                     if user.couple {
-                        // couple image
+                        CircularProfileImageView(user: user)
+                        Text("WITH")
+                            .font(.system(size: 20, weight: .bold, design: .monospaced))
+                            .foregroundColor(.white)
+                            .padding()
                         Circle()
                             .frame(width: 100)
                     }
-                    else {
-                        Image(systemName: "person.crop.circle.badge.questionmark")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                    }
+                    
                 })
                 .offset(y: -20)
                 

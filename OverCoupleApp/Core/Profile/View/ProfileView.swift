@@ -31,10 +31,8 @@ struct ProfileView: View {
                 HStack(content: {
                     
                     // user image
-                    Image(user.profilePic)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
+                    CircularProfileImageView(user: user)
+                        
                     Text("with")
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
                         .foregroundColor(.white)

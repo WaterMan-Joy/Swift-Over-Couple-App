@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct FeedRowView: View {
     
@@ -16,11 +17,7 @@ struct FeedRowView: View {
             
             // profile image + user info + feed caption + action buttons
             HStack(alignment: .top, content: {
-                Image(post.user?.profilePic ?? "")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .foregroundColor(Color(.systemBlue))
-                    .cornerRadius(10)
+                FeedUserImageView(post: post)
                 
                 // user info & feed caption
                 VStack(alignment: .leading, content: {

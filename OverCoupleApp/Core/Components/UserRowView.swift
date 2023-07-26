@@ -20,10 +20,7 @@ struct UserRowView: View {
         HStack(content: {
             
             // user image
-            Image(user.profilePic)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 50, height: 50)
+            ExploreUserImageView(user: user)
             
             // user name & couple name & days
             VStack(alignment: .center, content: {
@@ -54,19 +51,14 @@ struct UserRowView: View {
             if user.couple {
                 Text("Yes")
             }
-            else {
-                Image(systemName: "person.crop.circle.badge.questionmark.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
-            }
+            
             
         }) //: HSTACK / user image + user name + couple name + days
         .padding()
         .background(.pink)
         .foregroundColor(.white)
         .cornerRadius(10)
-        .padding()
+        .padding(.horizontal)
     }
 }
 

@@ -20,11 +20,8 @@ struct SideMenuRowView: View {
                 
                 // user name & user image
                 VStack(content: {
-                    Image(user.profilePic)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
+                    CircularProfileImageView(user: user)
+                        
                     
                     Text(user.username)
                         .font(.system(size: 30, weight: .bold, design: .monospaced))

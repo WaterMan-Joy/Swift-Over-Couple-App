@@ -33,8 +33,9 @@ struct EditProfileView: View {
                     print("COMPLETE CLICK")
                     Task {
                         try await viewModel.updateUserData()
-                        dismiss()
                     }
+                    dismiss()
+
                 }, label: {
                     Text("완료")
                 })
@@ -54,7 +55,9 @@ struct EditProfileView: View {
                             .background(.pink)
                             .clipShape(Circle())
                             .frame(width: 100, height: 100)
-
+                        Text("선택 완료")
+                            .foregroundColor(.blue)
+                            .font(.system(size: 20, weight: .semibold, design: .monospaced))
                     }
                     else {
                         Image(systemName: "person")
@@ -64,11 +67,10 @@ struct EditProfileView: View {
                             .background(.pink)
                             .clipShape(Circle())
                             .frame(width: 100, height: 100)
+                        Text("사진 수정")
+                            .foregroundColor(.pink)
+                            .font(.system(size: 20, weight: .semibold, design: .monospaced))
                     }
-                    
-                    Text("사진 수정")
-                        .foregroundColor(.pink)
-                        .font(.system(size: 20, weight: .semibold, design: .monospaced))
                 }
             })
             .padding()

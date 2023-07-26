@@ -38,6 +38,18 @@ struct ExploreView: View {
             }) //: VSTACK
             .navigationTitle("EXPLORE")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing, content: {
+                    Button(action: {
+                        print("CLICK RESET!")
+                        Task {
+                            try await viewModel.fetchAllUser()
+                        }
+                    }, label: {
+                        Image(systemName: "arrow.clockwise")
+                    })
+                })
+            })
             
         }) //: NAVIGATION VIEW
     }
