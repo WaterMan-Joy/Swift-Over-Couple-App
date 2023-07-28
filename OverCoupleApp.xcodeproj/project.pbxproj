@@ -50,6 +50,8 @@
 		A8F77D332A71069B00CF31DD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A8F77D322A71069B00CF31DD /* Kingfisher */; };
 		A8F77D352A7107F100CF31DD /* CircularProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D342A7107F100CF31DD /* CircularProfileImageView.swift */; };
 		A8F77D3B2A73750400CF31DD /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D3A2A73750400CF31DD /* FeedViewModel.swift */; };
+		A8F77D3D2A73D88600CF31DD /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D3C2A73D88600CF31DD /* PostService.swift */; };
+		A8F77D3F2A73E19800CF31DD /* ProfileFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D3E2A73E19800CF31DD /* ProfileFilterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +93,8 @@
 		A8F77D2F2A6FBDEA00CF31DD /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		A8F77D342A7107F100CF31DD /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
 		A8F77D3A2A73750400CF31DD /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		A8F77D3C2A73D88600CF31DD /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		A8F77D3E2A73E19800CF31DD /* ProfileFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				A8F77D1E2A6A841400CF31DD /* UserService.swift */,
+				A8F77D3C2A73D88600CF31DD /* PostService.swift */,
 				A8F77D2F2A6FBDEA00CF31DD /* ImageUploader.swift */,
 			);
 			path = Services;
@@ -328,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				A8C221C52A5FE90400C9D9BA /* PostFilterViewModel.swift */,
+				A8F77D3E2A73E19800CF31DD /* ProfileFilterViewModel.swift */,
 				A8F77D2D2A6F751F00CF31DD /* EditProfileViewModel.swift */,
 			);
 			path = ViewModel;
@@ -546,6 +552,7 @@
 				A86905382A5E5A9D00C0A7FE /* MainTabView.swift in Sources */,
 				A8F77D3B2A73750400CF31DD /* FeedViewModel.swift in Sources */,
 				A8F77D112A67672A00CF31DD /* Application.swift in Sources */,
+				A8F77D3D2A73D88600CF31DD /* PostService.swift in Sources */,
 				A8F77D2C2A6F6ABC00CF31DD /* EditProfileView.swift in Sources */,
 				A8C221C62A5FE90400C9D9BA /* PostFilterViewModel.swift in Sources */,
 				A8F77D302A6FBDEA00CF31DD /* ImageUploader.swift in Sources */,
@@ -561,6 +568,7 @@
 				A8F77D352A7107F100CF31DD /* CircularProfileImageView.swift in Sources */,
 				A8C221D32A6024BC00C9D9BA /* SideMenuViewModel.swift in Sources */,
 				A869053C2A5E5C9000C0A7FE /* NotificationView.swift in Sources */,
+				A8F77D3F2A73E19800CF31DD /* ProfileFilterViewModel.swift in Sources */,
 				A8F77D212A6B6D1100CF31DD /* UploadPostViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

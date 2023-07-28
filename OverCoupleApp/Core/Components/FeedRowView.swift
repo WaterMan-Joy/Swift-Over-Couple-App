@@ -37,7 +37,7 @@ struct FeedRowView: View {
                             .foregroundColor(.white)
                     }) //: HSTACK user info
                     
-                    // feed caption
+                    // feed caption 
                     Text(post.caption)
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
                 }) //: VSTACK user info & feed caption
@@ -55,7 +55,7 @@ struct FeedRowView: View {
             
             // action buttons + date
             HStack(content: {
-                Text("\(post.timestamp.dateValue().description)")
+                Text("\(post.timestamp.dateValue().formatted())")
                     .font(.system(size: 10, weight: .bold, design: .monospaced))
 
                 Text("2 week")

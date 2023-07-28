@@ -16,9 +16,7 @@ struct CurrentUserView: View {
 //    @Environment(\.presentationMode) var mode
     @Namespace var animation
     
-    var posts: [Post] {
-        return Post.MOCK_POSTS.filter({ $0.user?.username == user.username})
-    }
+    @StateObject private var viewModel = ProfileFilterViewModel()
     
     var body: some View {
         
@@ -134,6 +132,7 @@ struct CurrentUserView: View {
                                 .frame(height: 3)
                             
                         }
+                        
                     })
                     .onTapGesture {
                         withAnimation(.easeInOut) {
@@ -147,9 +146,17 @@ struct CurrentUserView: View {
             // posts view
             ScrollView(showsIndicators: true, content: {
                 LazyVStack(content: {
-                    ForEach(posts) { post in
-                        FeedRowView(post: post)
+                    if PostFilterViewModel.myPosts == selectedFilter {
+                        ForEach(viewModel.userPosts) { post in
+                            FeedRowView(post: post)
+                        }
                     }
+                    else if PostFilterViewModel.ourPosts == selectedFilter{
+                        Text("우리의 포스트")
+                    } else if PostFilterViewModel.likePosts == selectedFilter{
+                        Text("좋아한 포스트")
+                    }
+                    
                 }) //: LAZY VSTACK
             }) //: SCROLL VIEW
             
