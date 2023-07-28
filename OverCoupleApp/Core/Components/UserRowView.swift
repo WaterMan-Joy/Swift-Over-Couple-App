@@ -20,7 +20,7 @@ struct UserRowView: View {
         HStack(content: {
             
             // user image
-            ExploreUserImageView(user: user)
+            CircularProfileImageView(user: user, post: nil, size: .small)
             
             // user name & couple name & days
             VStack(alignment: .center, content: {

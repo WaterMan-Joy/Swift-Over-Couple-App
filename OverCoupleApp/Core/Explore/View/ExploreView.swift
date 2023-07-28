@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExploreView: View {
     
+    @State private var searchText: String = ""
     @StateObject var viewModel = ExploreViewModel()
     var body: some View {
         
@@ -31,12 +32,19 @@ struct ExploreView: View {
                             
                         }) //: FOR EACH
                         
+                        
                     }) // : LAZY VSTACK
+                    .searchable(text: $searchText, prompt: "커플 or 유저 검색")
                     
                 }) //: SCROLL VIEW
+                .refreshable {
+                    Task {
+                        try await viewModel.fetchAllUser()
+                    }
+                }
                 
             }) //: VSTACK
-            .navigationTitle("EXPLORE")
+            .navigationTitle("검색")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing, content: {

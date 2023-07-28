@@ -12,6 +12,7 @@ struct FeedView: View {
     
     let user: User
     
+    @StateObject private var feedViewModel = FeedViewModel()
     @State private var showNewPostView: Bool = false
     @EnvironmentObject var viewModel: ContentViewModel
 //    let user = GIDSignIn.sharedInstance.currentUser
@@ -29,7 +30,7 @@ struct FeedView: View {
                     LazyVStack {
                         
                         // feed view
-                        ForEach(Post.MOCK_POSTS) { post in
+                        ForEach(feedViewModel.posts) { post in
                             FeedRowView(post: post)
                             
                         } //: FOR EACH / feed view
@@ -37,6 +38,11 @@ struct FeedView: View {
                     } //: LAZY VSTACK / feeds view
                     
                 } //: SCROLL VIEW
+                .refreshable {
+                    Task {
+                        try await feedViewModel.fetchPosts()
+                    }
+                }
                 
                 // upload view tap
                 Button(action: {
@@ -56,7 +62,7 @@ struct FeedView: View {
                 })
                 
             }) //: ZSTACK
-            .navigationTitle("\(user.username) HOME")
+            .navigationTitle("\(user.username)님의 피드")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 

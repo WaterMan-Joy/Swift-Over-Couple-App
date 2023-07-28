@@ -33,10 +33,10 @@ struct CurrentUserView: View {
                 HStack(content: {
                     
                     // user image
-                    CircularProfileImageView(user: user)
+                    CircularProfileImageView(user: user, post: nil, size: CircularProfileImageView.ProfileImageSize.large)
                     
                     if user.couple {
-                        CircularProfileImageView(user: user)
+                        CircularProfileImageView(user: user, post: nil, size: CircularProfileImageView.ProfileImageSize.large)
                         Text("WITH")
                             .font(.system(size: 20, weight: .bold, design: .monospaced))
                             .foregroundColor(.white)

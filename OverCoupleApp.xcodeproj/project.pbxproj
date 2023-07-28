@@ -49,8 +49,7 @@
 		A8F77D302A6FBDEA00CF31DD /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D2F2A6FBDEA00CF31DD /* ImageUploader.swift */; };
 		A8F77D332A71069B00CF31DD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A8F77D322A71069B00CF31DD /* Kingfisher */; };
 		A8F77D352A7107F100CF31DD /* CircularProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D342A7107F100CF31DD /* CircularProfileImageView.swift */; };
-		A8F77D372A710A2E00CF31DD /* ExploreUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D362A710A2E00CF31DD /* ExploreUserImageView.swift */; };
-		A8F77D392A710B8E00CF31DD /* FeedUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D382A710B8E00CF31DD /* FeedUserImageView.swift */; };
+		A8F77D3B2A73750400CF31DD /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D3A2A73750400CF31DD /* FeedViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,8 +90,7 @@
 		A8F77D2D2A6F751F00CF31DD /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		A8F77D2F2A6FBDEA00CF31DD /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		A8F77D342A7107F100CF31DD /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
-		A8F77D362A710A2E00CF31DD /* ExploreUserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreUserImageView.swift; sourceTree = "<group>"; };
-		A8F77D382A710B8E00CF31DD /* FeedUserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUserImageView.swift; sourceTree = "<group>"; };
+		A8F77D3A2A73750400CF31DD /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +227,7 @@
 		A869052D2A5E45C600C0A7FE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A8F77D3A2A73750400CF31DD /* FeedViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -255,8 +254,6 @@
 				A86905342A5E46A800C0A7FE /* FeedRowView.swift */,
 				A8C221C82A60157800C9D9BA /* UserRowView.swift */,
 				A8F77D342A7107F100CF31DD /* CircularProfileImageView.swift */,
-				A8F77D362A710A2E00CF31DD /* ExploreUserImageView.swift */,
-				A8F77D382A710B8E00CF31DD /* FeedUserImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -537,7 +534,6 @@
 				A8F77D1F2A6A841400CF31DD /* UserService.swift in Sources */,
 				A8ED23592A6404DC00F15D2D /* UploadPostView.swift in Sources */,
 				A8ED23652A66180100F15D2D /* AppDelegate.swift in Sources */,
-				A8F77D372A710A2E00CF31DD /* ExploreUserImageView.swift in Sources */,
 				A86905312A5E45E500C0A7FE /* FeedView.swift in Sources */,
 				A8F77D2E2A6F751F00CF31DD /* EditProfileViewModel.swift in Sources */,
 				A86905182A5E3CC500C0A7FE /* OverCoupleAppApp.swift in Sources */,
@@ -548,6 +544,7 @@
 				A8BCB9722A662814009C89D0 /* LoginViewModel.swift in Sources */,
 				A86905352A5E46A800C0A7FE /* FeedRowView.swift in Sources */,
 				A86905382A5E5A9D00C0A7FE /* MainTabView.swift in Sources */,
+				A8F77D3B2A73750400CF31DD /* FeedViewModel.swift in Sources */,
 				A8F77D112A67672A00CF31DD /* Application.swift in Sources */,
 				A8F77D2C2A6F6ABC00CF31DD /* EditProfileView.swift in Sources */,
 				A8C221C62A5FE90400C9D9BA /* PostFilterViewModel.swift in Sources */,
@@ -562,7 +559,6 @@
 				A8C221C92A60157800C9D9BA /* UserRowView.swift in Sources */,
 				A8F77D2A2A6F484C00CF31DD /* ExplporeViewModel.swift in Sources */,
 				A8F77D352A7107F100CF31DD /* CircularProfileImageView.swift in Sources */,
-				A8F77D392A710B8E00CF31DD /* FeedUserImageView.swift in Sources */,
 				A8C221D32A6024BC00C9D9BA /* SideMenuViewModel.swift in Sources */,
 				A869053C2A5E5C9000C0A7FE /* NotificationView.swift in Sources */,
 				A8F77D212A6B6D1100CF31DD /* UploadPostViewModel.swift in Sources */,

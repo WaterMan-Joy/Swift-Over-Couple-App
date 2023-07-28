@@ -20,7 +20,7 @@ struct SideMenuRowView: View {
                 
                 // user name & user image
                 VStack(content: {
-                    CircularProfileImageView(user: user)
+                    CircularProfileImageView(user: user, post: nil, size: CircularProfileImageView.ProfileImageSize.large)
                         
                     
                     Text(user.username)

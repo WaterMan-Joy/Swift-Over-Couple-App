@@ -42,7 +42,7 @@ class LoginViewModel: ObservableObject {
 
     // sign in
     @MainActor
-    func signUpWithGoogle() async throws {
+    func signUpWithGoogle() throws {
         
         // get app client id
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
@@ -71,9 +71,9 @@ class LoginViewModel: ObservableObject {
                 guard let user = result?.user else {return}
                 let ref = Firestore.firestore().collection("users").document(user.uid)
                 Task {
-                    let ref2 = try await ref.getDocument().exists
-                    print("DEBUG: 가입된 유저 입니까? \(ref2)")
-                    if !ref2 {
+                    let isRef = try await ref.getDocument().exists
+                    print("DEBUG: 가입된 유저 입니까? \(isRef)")
+                    if !isRef {
                         let userData = User(id: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "", bio: nil, couplename: nil, couple: false)
                         self.currentUser = userData
                         guard let encodedUser = try? Firestore.Encoder().encode(userData) else {return}

@@ -72,7 +72,7 @@ struct EditProfileView: View {
                             .font(.system(size: 20, weight: .semibold, design: .monospaced))
                     }
                 }
-            })
+            }) // PHOTOS PICKER
             .padding()
             Divider()
             VStack(content: {

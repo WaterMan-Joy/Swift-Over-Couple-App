@@ -9,7 +9,13 @@ import SwiftUI
 
 struct NotificationView: View {
     var body: some View {
-        Text("Notification View")
+        NavigationView {
+            VStack {
+                Text("알림 페이지")
+            }
+            .navigationTitle("알림")
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 

@@ -36,7 +36,7 @@ struct LoginView: View {
                 Button(action: {
                     print("sign up with google")
                     Task {
-                        try await viewModel.service.signUpWithGoogle()
+                        try viewModel.service.signUpWithGoogle()
                     }
                 }, label: {
                     HStack(content: {

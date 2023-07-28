@@ -19,53 +19,66 @@ struct UploadPostView: View {
         
        
             // upload post view
-            VStack(alignment: .leading, content: {
+            VStack(alignment: .center, content: {
                 
                 HStack(content: {
                     Button(action: {
-                        print("cancel click")
+                        print("UPLOAD VIEW: CLICK CANCEL!")
                         dismiss()
                     }, label: {
-                        Text("CANCEL")
+                        Text("취소")
                     })
                     Spacer()
                     Text("NEW POST")
                     Spacer()
                     Button(action: {
-                        print("upload click")
+                        print("UPLOAD VIEW: CLICK UPLOAD!")
+                        Task {
+                            try await viewModel.uploadPost(caption: caption)
+                        }
+                        dismiss()
                     }, label: {
-                        Text("UPLOAD")
+                        Text("업로드")
                     })
                 })
                 
                 Rectangle().frame(height: 10)
                 // upload image
-                HStack(alignment: .top, content: {
-                    if let image = viewModel.profileImage {
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(10)
-                            .frame(width: 100, height: 100)
+                PhotosPicker(selection: $viewModel.selectedImage, label: {
+                    VStack {
+                        if let image = viewModel.profileImage {
+                            image
+                                .resizable()
+                                .foregroundColor(.white)
+                                .background(.pink)
+                                .cornerRadius(20)
+                                .frame(width: 200, height: 200)
+                            Text("선택 완료")
+                                .foregroundColor(.blue)
+                                .font(.system(size: 20, weight: .semibold, design: .monospaced))
+                        } else {
+                            Image(systemName: "photo")
+                                .resizable()
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(.pink)
+                                .cornerRadius(20)
+                                .frame(width: 200, height: 200)
+                            Text("사진 수정")
+                                .foregroundColor(.pink)
+                                .font(.system(size: 20, weight: .semibold, design: .monospaced))
+                        }
                     }
-                }) //: HSTACK / upload image
+                }) //: PHOTOS PICKER
+                
+                // UPLOAD READY?
+                Text("업로드 준비 완료")
                 
                 // text field
                 TextField("post upload", text: $caption, axis: .vertical)
                     .font(.system(size: 20, weight: .semibold, design: .monospaced))
                     .textFieldStyle(.roundedBorder)
                     .padding()
-                
-                Button(action: {
-                    print("location button click")
-                }, label: {
-                    Text("location")
-                        .font(.system(size: 10, weight: .semibold, design: .monospaced))
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(.gray)
-                        .cornerRadius(10)
-                })
                 Spacer()
                 
                 

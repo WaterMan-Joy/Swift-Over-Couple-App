@@ -9,7 +9,13 @@ import SwiftUI
 
 struct ChatView: View {
     var body: some View {
-        Text("Chat View")
+        NavigationView {
+            VStack {
+                Text("Chat View")
+            }
+            .navigationTitle("채팅하기")
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 

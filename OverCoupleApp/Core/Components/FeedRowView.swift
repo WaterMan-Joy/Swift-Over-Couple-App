@@ -17,7 +17,12 @@ struct FeedRowView: View {
             
             // profile image + user info + feed caption + action buttons
             HStack(alignment: .top, content: {
-                FeedUserImageView(post: post)
+                CircularProfileImageView(user: nil, post: post, size: .small)
+//                KFImage(URL(string: post.user?.profilePic ?? ""))
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(width: 60, height: 60)
+//                    .clipShape(Circle())
                 
                 // user info & feed caption
                 VStack(alignment: .leading, content: {
@@ -41,7 +46,7 @@ struct FeedRowView: View {
             }) //: HSTACK profile image + user info + feed caption
             
             // imageu url
-            Image(post.imageUrl)
+            KFImage(URL(string: post.imageUrl))
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -50,6 +55,9 @@ struct FeedRowView: View {
             
             // action buttons + date
             HStack(content: {
+                Text("\(post.timestamp.dateValue().description)")
+                    .font(.system(size: 10, weight: .bold, design: .monospaced))
+
                 Text("2 week")
                     .font(.system(size: 16, weight: .bold, design: .monospaced))
                     .foregroundColor(Color(.white))

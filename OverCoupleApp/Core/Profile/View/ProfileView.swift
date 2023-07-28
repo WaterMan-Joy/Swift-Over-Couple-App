@@ -31,7 +31,7 @@ struct ProfileView: View {
                 HStack(content: {
                     
                     // user image
-                    CircularProfileImageView(user: user)
+                    CircularProfileImageView(user: user, post: nil, size: CircularProfileImageView.ProfileImageSize.large)
                         
                     Text("with")
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
