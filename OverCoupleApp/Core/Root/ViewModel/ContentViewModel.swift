@@ -8,11 +8,13 @@
 import Foundation
 import Firebase
 import Combine
+import FirebaseAuth
 
 
 class ContentViewModel: ObservableObject {
     
     let service = LoginViewModel.shared
+    
     private var cancellables = Set<AnyCancellable>()
     
     @Published var userSession: FirebaseAuth.User?
@@ -20,6 +22,7 @@ class ContentViewModel: ObservableObject {
     
     init() {
         setupSubscribers()
+        
     }
     
     

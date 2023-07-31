@@ -28,7 +28,14 @@ struct PostService {
         return posts
     }
     
-    static func fetchUserAndCouplePosts(ownerUid: String, coupleUid: String) async throws -> [Post] {
-        return []
+    static func fetchUserAndCouplePosts(userUid: String, coupleUid: String) async throws -> [Post] {
+        let userQuery = try await Firestore.firestore().collection("posts").whereField("ownerUid", isEqualTo: userUid).getDocuments()
+        let userPosts = try userQuery.documents.compactMap({try $0.data(as: Post.self)})
+        
+        let coupleQuery = try await Firestore.firestore().collection("posts").whereField("ownerUid", isEqualTo: coupleUid).getDocuments()
+        let couplePosts = try coupleQuery.documents.compactMap({try $0.data(as: Post.self)})
+        
+        let userAndCouplePosts = userPosts + couplePosts
+        return userAndCouplePosts
     }
 }

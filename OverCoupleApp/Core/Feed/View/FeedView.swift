@@ -31,7 +31,11 @@ struct FeedView: View {
                         
                         // feed view
                         ForEach(feedViewModel.posts) { post in
-                            FeedRowView(post: post)
+                            NavigationLink(destination: {
+                                FeedInfoView(post: post)
+                            }, label: {
+                                FeedRowView(post: post)
+                            })
                             
                         } //: FOR EACH / feed view
                         

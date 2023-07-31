@@ -13,7 +13,6 @@ struct CurrentUserView: View {
     @State private var showEditProfile: Bool = false
 
     @State private var selectedFilter: PostFilterViewModel = .myPosts
-//    @Environment(\.presentationMode) var mode
     @Namespace var animation
     
     @StateObject private var viewModel = ProfileFilterViewModel()
@@ -31,16 +30,16 @@ struct CurrentUserView: View {
                 HStack(content: {
                     
                     // user image
-                    CircularProfileImageView(user: user, post: nil, size: CircularProfileImageView.ProfileImageSize.large)
                     
                     if user.couple {
-                        CircularProfileImageView(user: user, post: nil, size: CircularProfileImageView.ProfileImageSize.large)
+                        CircularProfileImageView(user: user, post: nil, size: .large)
                         Text("WITH")
                             .font(.system(size: 20, weight: .bold, design: .monospaced))
                             .foregroundColor(.white)
                             .padding()
-                        Circle()
-                            .frame(width: 100)
+                        Circle().frame(width: 50)
+                    } else if !user.couple {
+                        CircularProfileImageView(user: user, post: nil, size: .large)
                     }
                     
                 })
@@ -152,7 +151,9 @@ struct CurrentUserView: View {
                         }
                     }
                     else if PostFilterViewModel.ourPosts == selectedFilter{
-                        Text("우리의 포스트")
+                        ForEach(viewModel.userAndCouplePosts) { post in
+                            FeedRowView(post: post)
+                        }
                     } else if PostFilterViewModel.likePosts == selectedFilter{
                         Text("좋아한 포스트")
                     }

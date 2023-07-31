@@ -26,6 +26,7 @@
 		A8C221D12A60249900C9D9BA /* SideMenuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C221D02A60249900C9D9BA /* SideMenuRowView.swift */; };
 		A8C221D32A6024BC00C9D9BA /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C221D22A6024BC00C9D9BA /* SideMenuViewModel.swift */; };
 		A8C221D52A61391B00C9D9BA /* SideMenuItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C221D42A61391A00C9D9BA /* SideMenuItemRowView.swift */; };
+		A8DD1B3D2A77789B005C616C /* FeedInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B3C2A77789B005C616C /* FeedInfoView.swift */; };
 		A8ED23592A6404DC00F15D2D /* UploadPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ED23582A6404DC00F15D2D /* UploadPostView.swift */; };
 		A8ED235B2A64D52D00F15D2D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ED235A2A64D52C00F15D2D /* LoginView.swift */; };
 		A8ED235D2A66161000F15D2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8ED235C2A66160F00F15D2D /* GoogleService-Info.plist */; };
@@ -52,6 +53,7 @@
 		A8F77D3B2A73750400CF31DD /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D3A2A73750400CF31DD /* FeedViewModel.swift */; };
 		A8F77D3D2A73D88600CF31DD /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D3C2A73D88600CF31DD /* PostService.swift */; };
 		A8F77D3F2A73E19800CF31DD /* ProfileFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D3E2A73E19800CF31DD /* ProfileFilterViewModel.swift */; };
+		A8F77D412A76383600CF31DD /* CoupleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77D402A76383600CF31DD /* CoupleService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,7 @@
 		A8C221D02A60249900C9D9BA /* SideMenuRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRowView.swift; sourceTree = "<group>"; };
 		A8C221D22A6024BC00C9D9BA /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		A8C221D42A61391A00C9D9BA /* SideMenuItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItemRowView.swift; sourceTree = "<group>"; };
+		A8DD1B3C2A77789B005C616C /* FeedInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInfoView.swift; sourceTree = "<group>"; };
 		A8ED23582A6404DC00F15D2D /* UploadPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostView.swift; sourceTree = "<group>"; };
 		A8ED235A2A64D52C00F15D2D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A8ED235C2A66160F00F15D2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		A8F77D3A2A73750400CF31DD /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		A8F77D3C2A73D88600CF31DD /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		A8F77D3E2A73E19800CF31DD /* ProfileFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterViewModel.swift; sourceTree = "<group>"; };
+		A8F77D402A76383600CF31DD /* CoupleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +213,7 @@
 			children = (
 				A8F77D1E2A6A841400CF31DD /* UserService.swift */,
 				A8F77D3C2A73D88600CF31DD /* PostService.swift */,
+				A8F77D402A76383600CF31DD /* CoupleService.swift */,
 				A8F77D2F2A6FBDEA00CF31DD /* ImageUploader.swift */,
 			);
 			path = Services;
@@ -225,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				A86905302A5E45E500C0A7FE /* FeedView.swift */,
+				A8DD1B3C2A77789B005C616C /* FeedInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				A8F77D2E2A6F751F00CF31DD /* EditProfileViewModel.swift in Sources */,
 				A86905182A5E3CC500C0A7FE /* OverCoupleAppApp.swift in Sources */,
 				A8C221C42A5FD7C000C9D9BA /* ProfileView.swift in Sources */,
+				A8DD1B3D2A77789B005C616C /* FeedInfoView.swift in Sources */,
 				A8C221D12A60249900C9D9BA /* SideMenuRowView.swift in Sources */,
 				A8C221CF2A60245600C9D9BA /* SideMenuView.swift in Sources */,
 				A8F77D1D2A6A7D6B00CF31DD /* ContentViewModel.swift in Sources */,
@@ -556,6 +563,7 @@
 				A8F77D2C2A6F6ABC00CF31DD /* EditProfileView.swift in Sources */,
 				A8C221C62A5FE90400C9D9BA /* PostFilterViewModel.swift in Sources */,
 				A8F77D302A6FBDEA00CF31DD /* ImageUploader.swift in Sources */,
+				A8F77D412A76383600CF31DD /* CoupleService.swift in Sources */,
 				A8F77D182A691B9200CF31DD /* CurrentUserView.swift in Sources */,
 				A86905462A5F870F00C0A7FE /* User.swift in Sources */,
 				A86905442A5E5D4500C0A7FE /* ChatView.swift in Sources */,

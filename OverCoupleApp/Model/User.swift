@@ -14,7 +14,9 @@ struct User: Identifiable, Hashable, Codable {
     let email: String
     let profilePic: String
     let bio: String?
+    let coupleId: String?
     let couplename: String?
+    let couplePic: String?
     var couple: Bool
     
     var isCurrentUser: Bool {
@@ -25,15 +27,9 @@ struct User: Identifiable, Hashable, Codable {
 
 extension User {
     static var MOCK_USERS: [User] = [
-        .init(id: NSUUID().uuidString, username: "Joy0", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny0", couple: false),
-        .init(id: NSUUID().uuidString, username: "Joy1", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny1", couple: false),
-        .init(id: NSUUID().uuidString, username: "Joy2", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny2", couple: false),
-        .init(id: NSUUID().uuidString, username: "Joy3", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny3", couple: false),
-        .init(id: NSUUID().uuidString, username: "Joy4", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny4", couple: false),
-        .init(id: NSUUID().uuidString, username: "Joy5", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny5", couple: false),
-        .init(id: NSUUID().uuidString, username: "Joy6", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny6", couple: false),
-        .init(id: NSUUID().uuidString, username: "Joy7", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny7", couple: false),
-        .init(id: NSUUID().uuidString, username: "Joy8", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", couplename: "Sunny8", couple: false),
-
+        .init(id: NSUUID().uuidString, username: "Joy0", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", coupleId: "", couplename: "Sunny0", couplePic: "", couple: false),
+        .init(id: NSUUID().uuidString, username: "Joy0", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", coupleId: "", couplename: "Sunny0", couplePic: "", couple: false),
+        .init(id: NSUUID().uuidString, username: "Joy0", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", coupleId: "", couplename: "Sunny0", couplePic: "", couple: false),
+        .init(id: NSUUID().uuidString, username: "Joy0", email: "sumkim93@jjj.com", profilePic: "over-profile-image", bio: "i am over man", coupleId: "", couplename: "Sunny0", couplePic: "", couple: false),
     ]
 }

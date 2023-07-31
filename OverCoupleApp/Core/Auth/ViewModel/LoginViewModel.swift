@@ -10,6 +10,7 @@ import Firebase
 import GoogleSignIn
 import FirebaseFirestoreSwift
 import FirebaseFirestore
+import FirebaseAuth
 
 
 class LoginViewModel: ObservableObject {
@@ -74,7 +75,7 @@ class LoginViewModel: ObservableObject {
                     let isRef = try await ref.getDocument().exists
                     print("DEBUG: 가입된 유저 입니까? \(isRef)")
                     if !isRef {
-                        let userData = User(id: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "", bio: nil, couplename: nil, couple: false)
+                        let userData = User(id: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "", bio: "", coupleId: "", couplename: "", couplePic: "", couple: false)
                         self.currentUser = userData
                         guard let encodedUser = try? Firestore.Encoder().encode(userData) else {return}
                         print("DEBUG: \(encodedUser)")

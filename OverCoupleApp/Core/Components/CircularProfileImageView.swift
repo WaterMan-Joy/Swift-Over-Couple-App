@@ -46,11 +46,6 @@ struct CircularProfileImageView: View {
                 .frame(width: size.sizes, height: size.sizes)
                 .clipShape(Circle())
         }
-//        KFImage(URL(string: user?.profilePic ?? ""))
-//            .resizable()
-//            .scaledToFill()
-//            .frame(width: size.sizes, height: size.sizes)
-//            .clipShape(Circle())
     }
 }
 

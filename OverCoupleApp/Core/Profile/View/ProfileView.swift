@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     
@@ -13,8 +14,9 @@ struct ProfileView: View {
     @State private var showEditProfile: Bool = false
 
     @State private var selectedFilter: PostFilterViewModel = .myPosts
-//    @Environment(\.presentationMode) var mode
     @Namespace var animation
+    @StateObject private var viewModel = ProfileFilterViewModel()
+
             
     var posts: [Post] {
         return Post.MOCK_POSTS.filter({ $0.user?.username == user.username})
@@ -33,20 +35,18 @@ struct ProfileView: View {
                     // user image
                     CircularProfileImageView(user: user, post: nil, size: CircularProfileImageView.ProfileImageSize.large)
                         
-                    Text("with")
-                        .font(.system(size: 20, weight: .bold, design: .monospaced))
-                        .foregroundColor(.white)
-                        .padding()
-                    
-                    // couple image
-                    Circle()
-                        .frame(width: 100)
-                        .overlay(content: {
-                            Text("신청하기")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20, weight: .bold, design: .monospaced))
-                        })
+                    if user.couple {
+                        Text("WITH")
+                        VStack {
+                            KFImage(URL(string: user.couplePic ?? ""))
+                            Text(user.couplename ?? "")
+                                .font(.system(size: 20, design: .monospaced))
+                        }
+
+                    }
                 })
+                .fontDesign(.monospaced)
+                .foregroundColor(.white)
                 .offset(y: -20)
                 
             }) //: ZSTACK
@@ -149,12 +149,21 @@ struct ProfileView: View {
             
             ScrollView(showsIndicators: true, content: {
                 LazyVStack(content: {
-                    ForEach(posts) { post in
-                        FeedRowView(post: post)
+                    if PostFilterViewModel.myPosts == selectedFilter {
+                        ForEach(viewModel.userPosts) { post in
+                            FeedRowView(post: post)
+                        }
                     }
+                    else if PostFilterViewModel.ourPosts == selectedFilter{
+                        ForEach(viewModel.userAndCouplePosts) { post in
+                            FeedRowView(post: post)
+                        }
+                    } else if PostFilterViewModel.likePosts == selectedFilter{
+                        Text("좋아한 포스트")
+                    }
+                    
                 }) //: LAZY VSTACK
             }) //: SCROLL VIEW
-            
             Spacer()
             
         }) //: VSTACK

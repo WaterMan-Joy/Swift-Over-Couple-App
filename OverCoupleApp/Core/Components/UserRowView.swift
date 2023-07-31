@@ -6,54 +6,43 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct UserRowView: View {
-    
-//    let username: String
-//    let couplename: String
     
     let user: User
     
     var body: some View {
         
-        // user image + couple image + user name + couple name + days
+        // user + couple + date
         HStack(content: {
             
-            // user image
-            CircularProfileImageView(user: user, post: nil, size: .small)
+            // user image + user name
+            VStack {
+                // user image
+                KFImage(URL(string: user.profilePic))
+                Text(user.username)
+            } //: VSTACK: user image + user name
             
-            // user name & couple name & days
-            VStack(alignment: .center, content: {
-                // user name & couple name
-                HStack(alignment: .center, content: {
-                    Spacer()
-                    Text(user.username)
-                        .font(.system(size: 20, weight: .bold, design: .monospaced))
-                    Text(user.couple ? user.couplename ?? "WITH" : "")
-                        .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                    Text(user.couple ? user.couplename ?? "" : "는 사랑하고 싶어요")
-                        .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                    Spacer()
-                }) //: HSTACK / user name & couple name
-                
-                // days
-                if user.couple {
-                    Text("63 days")
-                        .font(.system(size: 15, weight: .semibold, design: .monospaced))
+            Spacer()
+            
+            // couple? + date
+            VStack {
+                if user.couple == true {
+                    Image(systemName: "heart.circle")
+                    Text("사귄 날")
                 }
-                else {
-                    Text("0 days")
-                        .font(.system(size: 15, weight: .semibold, design: .monospaced))
-                }
-            }) //: VSTACK / user name + couple name + days
+            } //: VSTACK: COUPLE? + DATE
             
-            // couple image
-            if user.couple {
-                Text("Yes")
-            }
+            Spacer()
             
+            // couple image + couple name
+            VStack {
+                KFImage(URL(string: user.couplePic ?? ""))
+                Text(user.couplename ?? "")
+            } //: VSTACK: couple image + couple name
             
-        }) //: HSTACK / user image + user name + couple name + days
+        }) //: HSTACK: USER + COUPLE + DATE
         .padding()
         .background(.pink)
         .foregroundColor(.white)

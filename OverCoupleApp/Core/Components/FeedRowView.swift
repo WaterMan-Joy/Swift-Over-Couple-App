@@ -11,79 +11,114 @@ import Kingfisher
 struct FeedRowView: View {
     
     let post: Post
+    @StateObject var viewModel = ProfileFilterViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 30, content: {
             
             // profile image + user info + feed caption + action buttons
-            HStack(alignment: .top, content: {
-                CircularProfileImageView(user: nil, post: post, size: .small)
-//                KFImage(URL(string: post.user?.profilePic ?? ""))
-//                    .resizable()
-//                    .scaledToFill()
-//                    .frame(width: 60, height: 60)
-//                    .clipShape(Circle())
+            HStack(alignment: .center, content: {
                 
-                // user info & feed caption
-                VStack(alignment: .leading, content: {
+                // user profile + user name
+                VStack() {
                     
-                    // user info
-                    HStack(content: {
-                        Text(post.user?.username ?? "")
-                            .font(.system(size: 20, weight: .bold, design: .monospaced))
+                    // user profile image
+                    KFImage(URL(string: post.user?.profilePic ?? ""))
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .scaledToFill()
+                        .cornerRadius(10)
+                    
+                    // user name
+                    Text(post.user?.username ?? "")
+                        .font(.system(size: 10))
+
+                } //: VSTACK: USER PROFILE IMAGE + USER NAME
+                
+                Spacer()
+                if post.user?.couple == true {
+                    Text("커플")
                         
-                        Text("with \(post.user?.couplename ?? "")")
-                            .font(.system(size: 16, weight: .bold, design: .monospaced))
-                            .foregroundColor(.white)
-                    }) //: HSTACK user info
+                }
+                Spacer()
+                
+                // couple profile image + couple name
+                VStack() {
+                    if post.user?.couple == true {
+                        
+                        // couple profile image
+                        KFImage(URL(string: post.user?.couplePic ?? ""))
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .scaledToFill()
+                            .cornerRadius(10)
+                        
+                        // couple name
+                        Text(post.user?.couplename ?? "")
+                            .font(.system(size: 10))
+                        
+                    } else if post.user?.couple == false {
+                        Image(systemName: "figure.mixed.cardio")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .scaledToFill()
+                            .cornerRadius(10)
+                        Text("솔로")
+                    }
                     
-                    // feed caption 
-                    Text(post.caption)
-                        .font(.system(size: 20, weight: .bold, design: .monospaced))
-                }) //: VSTACK user info & feed caption
-                .padding(.leading, 10)
+                } //: VSTACK: COUPLE PROFILE IMAGE + COUPLE NAME
                 
             }) //: HSTACK profile image + user info + feed caption
             
-            // imageu url
+            // post image
             KFImage(URL(string: post.imageUrl))
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
                 .cornerRadius(10)
-
             
+            // feed caption
+            Text(post.caption)
+                .font(.system(size: 20, weight: .bold, design: .monospaced))
+
             // action buttons + date
             HStack(content: {
+                
+                // date
                 Text("\(post.timestamp.dateValue().formatted())")
-                    .font(.system(size: 10, weight: .bold, design: .monospaced))
-
-                Text("2 week")
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
-                    .foregroundColor(Color(.white))
-                Button(action: {}, label: {
-                    Image(systemName: "text.bubble")
-                        .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                        .foregroundColor(.black)
-                })
+                    .font(.system(size: 15))
                 Spacer()
+
+                // comments button
+                Button(action: {
+                    print("FEED ROW VIEW: CLICK COMMENT")
+                }, label: {
+                    Image(systemName: "text.bubble")
+                        
+                }) //: COMMENTS BUTTON
+                
                 Text("\(post.likes)")
-                Button(action: {}, label: {
+                // likes button
+                Button(action: {
+                    print("FEED ROW VIEW: CLICK LIKES")
+                }, label: {
                     Image(systemName: "heart")
-                        .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                        .foregroundColor(.black)
-                })
+                        
+                }) //: LIKES BUTTON
+                
             }) //: HSTACK
             
         }) //: VSTACK
+        .font(.system(size: 20, weight: .semibold, design: .monospaced))
+        .foregroundColor(Color(.white))
         .frame(maxWidth: .infinity)
-        .padding(.all, 30)
+        .padding(30)
         .background(Color(.systemPink))
         .cornerRadius(10)
         .padding(.horizontal)
         
         Divider()
-    }
+    } //: VSTACK / FEED ROW VIEW
 }
 
 struct FeedRowView_Previews: PreviewProvider {

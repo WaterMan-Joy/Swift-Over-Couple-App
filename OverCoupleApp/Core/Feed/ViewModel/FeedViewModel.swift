@@ -24,5 +24,12 @@ class FeedViewModel: ObservableObject {
         self.posts = try await PostService.fetchFeedPosts()
     }
     
+    func addCouple(coupleId: String) async throws {
+        try await CoupleService.addCouple(coupleId: coupleId)
+    }
+    
+    func removeCouple(coupleId: String) async throws {
+        try await CoupleService.removeCouple(coupleId: coupleId)
+    }
     
 }
