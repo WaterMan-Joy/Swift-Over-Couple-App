@@ -17,7 +17,7 @@ class ProfileFilterViewModel: ObservableObject {
     init() {
         Task {
             try await fetchUserPosts()
-//            try await fetchUserAndCouplePosts()
+            try await fetchUserAndCouplePosts()
         }
     }
     
@@ -29,13 +29,9 @@ class ProfileFilterViewModel: ObservableObject {
     }
     
     @MainActor
-    func fetchUserAndCouplePosts(coupleUid: String) async throws {
+    func fetchUserAndCouplePosts() async throws {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-//        let snapshot = Firestore.firestore().collection("users").document(uid)
-        
-        
-        let userAndCouple = try await PostService.fetchUserAndCouplePosts(userUid: uid, coupleUid: coupleUid)
+        let userAndCouple = try await PostService.fetchUserAndCouplePosts()
         self.userAndCouplePosts = userAndCouple
         
     }

@@ -21,7 +21,11 @@ struct UserRowView: View {
             VStack {
                 // user image
                 KFImage(URL(string: user.profilePic))
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(10)
                 Text(user.username)
+                    .font(.system(size: 10))
             } //: VSTACK: user image + user name
             
             Spacer()
@@ -33,16 +37,22 @@ struct UserRowView: View {
                     Text("사귄 날")
                 }
             } //: VSTACK: COUPLE? + DATE
+            .font(.system(size: 20))
             
             Spacer()
             
             // couple image + couple name
             VStack {
                 KFImage(URL(string: user.couplePic ?? ""))
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(10)
                 Text(user.couplename ?? "")
+                    .font(.system(size: 10))
             } //: VSTACK: couple image + couple name
             
         }) //: HSTACK: USER + COUPLE + DATE
+        .font(.system(size: 20, weight: .bold, design: .monospaced))
         .padding()
         .background(.pink)
         .foregroundColor(.white)

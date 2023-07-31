@@ -116,7 +116,7 @@ struct CurrentUserView: View {
                     Spacer()
                     VStack(content: {
                         Text(item.title)
-                            .font(.system(size: 15, weight: selectedFilter == item ? .semibold : .regular, design: .monospaced))
+                            .font(.system(size: 18, weight: selectedFilter == item ? .semibold : .regular, design: .monospaced))
                             .foregroundColor(selectedFilter == item ? .black : .gray)
                         
                         if selectedFilter == item {
@@ -147,19 +147,27 @@ struct CurrentUserView: View {
                 LazyVStack(content: {
                     if PostFilterViewModel.myPosts == selectedFilter {
                         ForEach(viewModel.userPosts) { post in
-                            FeedRowView(post: post)
+                            ProfileFilterRowView(post: post)
                         }
                     }
                     else if PostFilterViewModel.ourPosts == selectedFilter{
                         ForEach(viewModel.userAndCouplePosts) { post in
-                            FeedRowView(post: post)
+                            ProfileFilterRowView(post: post)
                         }
                     } else if PostFilterViewModel.likePosts == selectedFilter{
                         Text("좋아한 포스트")
                     }
                     
                 }) //: LAZY VSTACK
+                
+                
             }) //: SCROLL VIEW
+            .refreshable {
+                Task {
+                    try await viewModel.fetchUserPosts()
+                    try await viewModel.fetchUserAndCouplePosts()
+                }
+            }
             
             
             Spacer()

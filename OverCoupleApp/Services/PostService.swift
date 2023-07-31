@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 struct PostService {
     static func fetchFeedPosts() async throws -> [Post] {
@@ -28,11 +29,18 @@ struct PostService {
         return posts
     }
     
-    static func fetchUserAndCouplePosts(userUid: String, coupleUid: String) async throws -> [Post] {
-        let userQuery = try await Firestore.firestore().collection("posts").whereField("ownerUid", isEqualTo: userUid).getDocuments()
+    static func fetchUserAndCouplePosts() async throws -> [Post] {
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
+        let user = try snapshot.data(as: User.self)
+        let coupleId = user.coupleId
+        
+        let userQuery = try await Firestore.firestore().collection("posts").whereField("ownerUid", isEqualTo: uid).getDocuments()
         let userPosts = try userQuery.documents.compactMap({try $0.data(as: Post.self)})
         
-        let coupleQuery = try await Firestore.firestore().collection("posts").whereField("ownerUid", isEqualTo: coupleUid).getDocuments()
+        let coupleQuery = try await Firestore.firestore().collection("posts").whereField("ownerUid", isEqualTo: coupleId ?? "").getDocuments()
         let couplePosts = try coupleQuery.documents.compactMap({try $0.data(as: Post.self)})
         
         let userAndCouplePosts = userPosts + couplePosts

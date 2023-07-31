@@ -22,6 +22,7 @@ struct ProfileView: View {
         return Post.MOCK_POSTS.filter({ $0.user?.username == user.username})
     }
     
+    
     var body: some View {
         
         VStack(content: {
@@ -30,20 +31,27 @@ struct ProfileView: View {
                 Color(.systemPink)
                     .ignoresSafeArea()
                 
+                // user image + couple image
                 HStack(content: {
                     
                     // user image
-                    CircularProfileImageView(user: user, post: nil, size: CircularProfileImageView.ProfileImageSize.large)
-                        
-                    if user.couple {
-                        Text("WITH")
-                        VStack {
-                            KFImage(URL(string: user.couplePic ?? ""))
-                            Text(user.couplename ?? "")
-                                .font(.system(size: 20, design: .monospaced))
-                        }
-
+                    KFImage(URL(string: user.profilePic))
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .cornerRadius(10)
+                    
+                    // couple?
+                    if user.couple == true {
+                        Image(systemName: "heart.circle")
+                            .font(.system(size: 40))
                     }
+                    
+                    // couple image
+                    KFImage(URL(string: user.couplePic ?? ""))
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .cornerRadius(10)
+                    
                 })
                 .fontDesign(.monospaced)
                 .foregroundColor(.white)
@@ -73,7 +81,7 @@ struct ProfileView: View {
                         VStack(content: {
                             Text("with")
                                 .font(.system(size: 20, weight: .bold, design: .monospaced))
-                            Text(user.couplename ?? "no couple")
+                            Text(user.couplename ?? "솔로")
                                 .font(.system(size: 25, weight: .bold, design: .monospaced))
                             Image(systemName: "heart.circle")
                                 .font(.system(size: 30, weight: .bold, design: .monospaced))
@@ -86,27 +94,31 @@ struct ProfileView: View {
                     
                     Spacer()
                     
-                    // edit profile
+                    // edit profile + follow
                     Button(action: {
                         if user.isCurrentUser {
-                            print("show edit profile")
+                            print("PROFILE VIEW: CLICK EDIT BUTTON")
                             self.showEditProfile.toggle()
                         } else {
-                            print("follow user")
+                            print("PROFILE VIEW: CLICK FOLLOW BUTTON")
                         }
                     }, label: {
-                        Text(user.isCurrentUser ? "EDIT PROFILE" : "FOLLOW")
+                        Text(user.isCurrentUser ? "프로필 수정" : "팔로우")
                             .foregroundColor(.white)
                             .font(.system(size: 20, weight: .bold, design: .monospaced))
                             .padding(.horizontal, 20)
                             .padding(.vertical, 10)
                             .background(user.isCurrentUser ? .pink : .blue)
                             .cornerRadius(10)
-                    }) //: BUTTON / edit profile button
+                        
+                    }) //: BUTTON: EDIT PROFILE BUTTON OR FOLLOW BUTTON
+                    
                 }) //: HSTACK
                 .padding()
                 
                 // bio
+                Text("설명")
+                    .font(.system(size: 15, weight: .semibold, design: .monospaced))
                 Text("\(user.bio ?? "no bio")")
                     .font(.system(size: 15, weight: .semibold, design: .monospaced))
                 
@@ -122,7 +134,7 @@ struct ProfileView: View {
                     Spacer()
                     VStack(content: {
                         Text(item.title)
-                            .font(.system(size: 20, weight: selectedFilter == item ? .semibold : .regular, design: .monospaced))
+                            .font(.system(size: 18, weight: selectedFilter == item ? .semibold : .regular, design: .monospaced))
                             .foregroundColor(selectedFilter == item ? .black : .gray)
                         
                         if selectedFilter == item {
@@ -151,12 +163,12 @@ struct ProfileView: View {
                 LazyVStack(content: {
                     if PostFilterViewModel.myPosts == selectedFilter {
                         ForEach(viewModel.userPosts) { post in
-                            FeedRowView(post: post)
+                            ProfileFilterRowView(post: post)
                         }
                     }
                     else if PostFilterViewModel.ourPosts == selectedFilter{
                         ForEach(viewModel.userAndCouplePosts) { post in
-                            FeedRowView(post: post)
+                            ProfileFilterRowView(post: post)
                         }
                     } else if PostFilterViewModel.likePosts == selectedFilter{
                         Text("좋아한 포스트")
@@ -164,6 +176,13 @@ struct ProfileView: View {
                     
                 }) //: LAZY VSTACK
             }) //: SCROLL VIEW
+            .refreshable {
+                Task {
+                    try await viewModel.fetchUserPosts()
+                    try await viewModel.fetchUserAndCouplePosts()
+                }
+            }
+            
             Spacer()
             
         }) //: VSTACK
