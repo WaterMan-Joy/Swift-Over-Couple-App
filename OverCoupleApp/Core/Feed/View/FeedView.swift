@@ -15,8 +15,6 @@ struct FeedView: View {
     @StateObject private var feedViewModel = FeedViewModel()
     @State private var showNewPostView: Bool = false
     @EnvironmentObject var viewModel: ContentViewModel
-//    let user = GIDSignIn.sharedInstance.currentUser
-    
     
     var body: some View {
         
@@ -32,11 +30,12 @@ struct FeedView: View {
                         // feed view
                         ForEach(feedViewModel.posts) { post in
                             NavigationLink(destination: {
-                                FeedInfoView(post: post)
+                                FeedInfoView(post: post, users: feedViewModel.users)
+                                
                             }, label: {
-                                FeedRowView(post: post)
+                                FeedRowView(post: post, user: user)
                             })
-                            
+
                         } //: FOR EACH / feed view
                         
                     } //: LAZY VSTACK / feeds view

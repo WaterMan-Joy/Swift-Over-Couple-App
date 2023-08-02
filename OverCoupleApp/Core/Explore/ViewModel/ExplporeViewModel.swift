@@ -22,4 +22,12 @@ class ExploreViewModel: ObservableObject {
     func fetchAllUser() async throws {
         self.users = try await UserService.fetchAllUsers()
     }
+    
+    func filteredUser(_ query: String) -> [User] {
+        let lowercasedQuery = query.lowercased()
+        return users.filter({
+            $0.username.lowercased().contains(lowercasedQuery)
+            
+        })
+    }
 }

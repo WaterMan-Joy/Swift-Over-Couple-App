@@ -11,7 +11,14 @@ struct NotificationView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("알림 페이지")
+                ScrollView {
+                    LazyVStack {
+                        ForEach(0 ..< 20, id: \.self) {_ in
+                            NotificationCell()
+                            Divider()
+                        }
+                    }
+                }
             }
             .navigationTitle("알림")
             .navigationBarTitleDisplayMode(.inline)

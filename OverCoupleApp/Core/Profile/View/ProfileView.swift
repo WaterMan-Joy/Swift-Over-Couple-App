@@ -113,12 +113,20 @@ struct ProfileView: View {
                         
                     }) //: BUTTON: EDIT PROFILE BUTTON OR FOLLOW BUTTON
                     
+                    if user.couple == true {
+                        Button(action: {
+                            Task {
+                                try await viewModel.removeCouple()
+                            }
+                        }, label: {
+                            Text("헤어지기")
+                        })
+                    }
+                    
                 }) //: HSTACK
                 .padding()
                 
                 // bio
-                Text("설명")
-                    .font(.system(size: 15, weight: .semibold, design: .monospaced))
                 Text("\(user.bio ?? "no bio")")
                     .font(.system(size: 15, weight: .semibold, design: .monospaced))
                 

@@ -11,11 +11,13 @@ import FirebaseAuth
 
 class CoupleService {
     
-    static func removeCouple(coupleId: String) async throws {
+    static func removeCouple() async throws {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
         let user = try snapshot.data(as: User.self)
-        let snapshot2 = try await Firestore.firestore().collection("users").document(coupleId).getDocument()
+        let coupleID = user.coupleId!
+        
+        let snapshot2 = try await Firestore.firestore().collection("users").document(coupleID).getDocument()
         let couple = try snapshot2.data(as: User.self)
         
         if user.couplename == couple.username && couple.couplename == user.username {
@@ -35,10 +37,14 @@ class CoupleService {
     
     static func addCouple(coupleId: String) async throws {
         
+        // current uid
         guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        // user
         let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
         let user = try snapshot.data(as: User.self)
         
+        // couple
         let snapshot2 = try await Firestore.firestore().collection("users").document(coupleId).getDocument()
         let couple = try snapshot2.data(as: User.self)
         

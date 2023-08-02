@@ -17,6 +17,7 @@ struct CurrentUserView: View {
     
     @StateObject private var viewModel = ProfileFilterViewModel()
     
+    
     var body: some View {
         
         VStack(content: {
@@ -96,6 +97,17 @@ struct CurrentUserView: View {
                             .background(.pink)
                             .cornerRadius(10)
                     }) //: BUTTON / edit profile button
+                    
+                    if user.couple == true {
+                        Button(action: {
+                            Task {
+                                try await viewModel.removeCouple()
+                            }
+                        }, label: {
+                            Text("헤어지기")
+                        })
+                    }
+                    
                 }) //: HSTACK
                 .padding()
                 

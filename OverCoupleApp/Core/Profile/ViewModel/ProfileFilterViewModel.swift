@@ -13,6 +13,7 @@ class ProfileFilterViewModel: ObservableObject {
     
     @Published var userPosts = [Post]()
     @Published var userAndCouplePosts = [Post]()
+    @Published var users = [User]()
     
     init() {
         Task {
@@ -20,6 +21,8 @@ class ProfileFilterViewModel: ObservableObject {
             try await fetchUserAndCouplePosts()
         }
     }
+    
+    
     
     @MainActor
     func fetchUserPosts() async throws {
@@ -30,14 +33,14 @@ class ProfileFilterViewModel: ObservableObject {
     
     @MainActor
     func fetchUserAndCouplePosts() async throws {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
         let userAndCouple = try await PostService.fetchUserAndCouplePosts()
         self.userAndCouplePosts = userAndCouple
         
     }
     
-    func removeCouple(coupleId: String) async throws {
-        try await CoupleService.removeCouple(coupleId: coupleId)
+    func removeCouple() async throws {
+        try await CoupleService.removeCouple()
     }
     
     func addCouple(coupleId: String) async throws {

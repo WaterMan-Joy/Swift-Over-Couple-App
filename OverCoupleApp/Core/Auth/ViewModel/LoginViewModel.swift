@@ -81,10 +81,11 @@ class LoginViewModel: ObservableObject {
                         print("DEBUG: \(encodedUser)")
                         try await Firestore.firestore().collection("users").document(userData.id).setData(encodedUser)
                         self.userSession = result?.user
+                        
+                    } else if isRef {
+                        try await self.loadUserData()
+
                     }
-                }
-                Task {
-                    try await self.loadUserData()
                 }
             })
 //            Auth.auth().signIn(with: credential) { result, error in

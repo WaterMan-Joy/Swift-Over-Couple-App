@@ -23,7 +23,7 @@ struct ExploreView: View {
                     
                     LazyVStack(content: {
                         
-                        ForEach(viewModel.users, content: { user in
+                        ForEach(searchText.isEmpty ? viewModel.users : viewModel.filteredUser(searchText), content: { user in
                             NavigationLink(destination: {
                                 ProfileView(user: user)
                             }, label: {

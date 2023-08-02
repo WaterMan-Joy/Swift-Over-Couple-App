@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SideMenuRowView: View {
     
@@ -24,7 +25,7 @@ struct SideMenuRowView: View {
                         
                     
                     Text(user.username)
-                        .font(.system(size: 30, weight: .bold, design: .monospaced))
+                        .font(.system(size: 20, weight: .bold, design: .monospaced))
                 }) //: VSTACK / user name & user image
                 
                 Text("WITH")
@@ -32,11 +33,15 @@ struct SideMenuRowView: View {
                 
                 // couple name & couple image
                 VStack(content: {
-                    Circle()
-                        .frame(width: 50, height: 50)
+                    
+                    KFImage(URL(string: user.couplePic ?? ""))
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .scaledToFill()
+                        .clipShape(Circle())
                     
                     Text(user.couplename ?? "")
-                        .font(.system(size: 30, weight: .bold, design: .monospaced))
+                        .font(.system(size: 20, weight: .bold, design: .monospaced))
                 }) //: VSTACK / couple name & couple image
                 
             }) //: HSTACK / user name + user image + couple name + couple Image

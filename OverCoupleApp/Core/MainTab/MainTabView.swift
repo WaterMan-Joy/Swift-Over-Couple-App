@@ -48,6 +48,7 @@ struct MainTabView: View {
                 .tabItem({
                     Image(systemName: "bell.circle")
                 }).tag(3)
+                .badge(10)
             
             CurrentUserView(user: user)
                 .navigationBarBackButtonHidden(true)
