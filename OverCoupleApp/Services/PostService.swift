@@ -10,6 +10,13 @@ import FirebaseFirestore
 import FirebaseAuth
 
 struct PostService {
+    
+    static func fetchAllPost() async throws -> [Post] {
+        let snapshot = try await Firestore.firestore().collection("posts").getDocuments()
+        return try snapshot.documents.compactMap({try $0.data(as: Post.self)})
+
+    }
+    
     static func fetchFeedPosts() async throws -> [Post] {
         let snapshot = try await Firestore.firestore().collection("posts").getDocuments()
         var posts = try snapshot.documents.compactMap({try $0.data(as: Post.self)})

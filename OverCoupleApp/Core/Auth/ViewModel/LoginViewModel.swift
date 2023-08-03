@@ -25,7 +25,6 @@ class LoginViewModel: ObservableObject {
     static let shared = LoginViewModel()
     
     
-    
     init() {
         Task {
             try await loadUserData()

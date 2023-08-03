@@ -30,6 +30,12 @@
 		A8DD1B3F2A77CAEA005C616C /* ProfileFilterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B3E2A77CAEA005C616C /* ProfileFilterRowView.swift */; };
 		A8DD1B412A790161005C616C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B402A790161005C616C /* Comment.swift */; };
 		A8DD1B452A790714005C616C /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B442A790714005C616C /* NotificationCell.swift */; };
+		A8DD1B492A7A69B1005C616C /* PostGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B482A7A69B1005C616C /* PostGridView.swift */; };
+		A8DD1B4B2A7A6B05005C616C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B4A2A7A6B05005C616C /* SearchView.swift */; };
+		A8DD1B4D2A7A6CE4005C616C /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B4C2A7A6CE4005C616C /* SearchCell.swift */; };
+		A8DD1B4F2A7A73A3005C616C /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B4E2A7A73A3005C616C /* PostCell.swift */; };
+		A8DD1B512A7AA2B6005C616C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B502A7AA2B6005C616C /* ProfileViewModel.swift */; };
+		A8DD1B562A7B5906005C616C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD1B552A7B5906005C616C /* Constants.swift */; };
 		A8ED23592A6404DC00F15D2D /* UploadPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ED23582A6404DC00F15D2D /* UploadPostView.swift */; };
 		A8ED235B2A64D52D00F15D2D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ED235A2A64D52C00F15D2D /* LoginView.swift */; };
 		A8ED235D2A66161000F15D2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8ED235C2A66160F00F15D2D /* GoogleService-Info.plist */; };
@@ -85,6 +91,12 @@
 		A8DD1B3E2A77CAEA005C616C /* ProfileFilterRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterRowView.swift; sourceTree = "<group>"; };
 		A8DD1B402A790161005C616C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		A8DD1B442A790714005C616C /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		A8DD1B482A7A69B1005C616C /* PostGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGridView.swift; sourceTree = "<group>"; };
+		A8DD1B4A2A7A6B05005C616C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		A8DD1B4C2A7A6CE4005C616C /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		A8DD1B4E2A7A73A3005C616C /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		A8DD1B502A7AA2B6005C616C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		A8DD1B552A7B5906005C616C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A8ED23582A6404DC00F15D2D /* UploadPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostView.swift; sourceTree = "<group>"; };
 		A8ED235A2A64D52C00F15D2D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A8ED235C2A66160F00F15D2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -148,6 +160,7 @@
 			children = (
 				A8ED236B2A661A6000F15D2D /* Info.plist */,
 				A8ED235C2A66160F00F15D2D /* GoogleService-Info.plist */,
+				A8DD1B542A7B58F7005C616C /* Utils */,
 				A869052A2A5E44DE00C0A7FE /* Services */,
 				A8ED23632A6617E200F15D2D /* Helper */,
 				A869052B2A5E44E800C0A7FE /* Extentions */,
@@ -315,6 +328,10 @@
 			isa = PBXGroup;
 			children = (
 				A86905412A5E5D2B00C0A7FE /* ExploreView.swift */,
+				A8DD1B4A2A7A6B05005C616C /* SearchView.swift */,
+				A8DD1B4C2A7A6CE4005C616C /* SearchCell.swift */,
+				A8DD1B482A7A69B1005C616C /* PostGridView.swift */,
+				A8DD1B4E2A7A73A3005C616C /* PostCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -348,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				A8C221C52A5FE90400C9D9BA /* PostFilterViewModel.swift */,
+				A8DD1B502A7AA2B6005C616C /* ProfileViewModel.swift */,
 				A8F77D3E2A73E19800CF31DD /* ProfileFilterViewModel.swift */,
 				A8F77D2D2A6F751F00CF31DD /* EditProfileViewModel.swift */,
 			);
@@ -397,6 +415,14 @@
 				A8C221D22A6024BC00C9D9BA /* SideMenuViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A8DD1B542A7B58F7005C616C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD1B552A7B5906005C616C /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		A8ED23552A6404A600F15D2D /* UploadPost */ = {
@@ -553,6 +579,7 @@
 			files = (
 				A8C221D52A61391B00C9D9BA /* SideMenuItemRowView.swift in Sources */,
 				A8F77D1F2A6A841400CF31DD /* UserService.swift in Sources */,
+				A8DD1B562A7B5906005C616C /* Constants.swift in Sources */,
 				A8ED23592A6404DC00F15D2D /* UploadPostView.swift in Sources */,
 				A8ED23652A66180100F15D2D /* AppDelegate.swift in Sources */,
 				A8DD1B452A790714005C616C /* NotificationCell.swift in Sources */,
@@ -561,6 +588,7 @@
 				A86905182A5E3CC500C0A7FE /* OverCoupleAppApp.swift in Sources */,
 				A8C221C42A5FD7C000C9D9BA /* ProfileView.swift in Sources */,
 				A8DD1B3D2A77789B005C616C /* FeedInfoView.swift in Sources */,
+				A8DD1B4B2A7A6B05005C616C /* SearchView.swift in Sources */,
 				A8C221D12A60249900C9D9BA /* SideMenuRowView.swift in Sources */,
 				A8C221CF2A60245600C9D9BA /* SideMenuView.swift in Sources */,
 				A8F77D1D2A6A7D6B00CF31DD /* ContentViewModel.swift in Sources */,
@@ -568,6 +596,7 @@
 				A8BCB9722A662814009C89D0 /* LoginViewModel.swift in Sources */,
 				A86905352A5E46A800C0A7FE /* FeedRowView.swift in Sources */,
 				A86905382A5E5A9D00C0A7FE /* MainTabView.swift in Sources */,
+				A8DD1B512A7AA2B6005C616C /* ProfileViewModel.swift in Sources */,
 				A8F77D3B2A73750400CF31DD /* FeedViewModel.swift in Sources */,
 				A8F77D112A67672A00CF31DD /* Application.swift in Sources */,
 				A8F77D3D2A73D88600CF31DD /* PostService.swift in Sources */,
@@ -579,7 +608,10 @@
 				A86905462A5F870F00C0A7FE /* User.swift in Sources */,
 				A86905442A5E5D4500C0A7FE /* ChatView.swift in Sources */,
 				A8ED235B2A64D52D00F15D2D /* LoginView.swift in Sources */,
+				A8DD1B4F2A7A73A3005C616C /* PostCell.swift in Sources */,
+				A8DD1B492A7A69B1005C616C /* PostGridView.swift in Sources */,
 				A8F77D162A680F1300CF31DD /* ContentView.swift in Sources */,
+				A8DD1B4D2A7A6CE4005C616C /* SearchCell.swift in Sources */,
 				A86905482A5F886D00C0A7FE /* Post.swift in Sources */,
 				A86905422A5E5D2B00C0A7FE /* ExploreView.swift in Sources */,
 				A8C221C92A60157800C9D9BA /* UserRowView.swift in Sources */,

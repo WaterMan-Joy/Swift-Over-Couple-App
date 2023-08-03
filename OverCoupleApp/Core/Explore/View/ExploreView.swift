@@ -9,13 +9,18 @@ import SwiftUI
 
 struct ExploreView: View {
     
-    @State private var searchText: String = ""
-    @StateObject var viewModel = ExploreViewModel()
+    @State var searchText: String = ""
+//    @StateObject var viewModel = ExploreViewModel()
+    @ObservedObject var exploreViewModel = ExploreViewModel()
+    
+    var users: [User] {
+        return searchText.isEmpty ? exploreViewModel.users : exploreViewModel.filteredUser(searchText)
+    }
+    
     var body: some View {
         
         // explore view
         NavigationView(content: {
-            
             
             VStack(content: {
                 
@@ -23,15 +28,22 @@ struct ExploreView: View {
                     
                     LazyVStack(content: {
                         
-                        ForEach(searchText.isEmpty ? viewModel.users : viewModel.filteredUser(searchText), content: { user in
-                            NavigationLink(destination: {
-                                ProfileView(user: user)
-                            }, label: {
-                                UserRowView(user: user)
-                            }) //: NAVIGATION LINK
-                            
-                        }) //: FOR EACH
+                        ZStack {
+                            if searchText.isEmpty {
+                                PostGridView(exploreViewModel: exploreViewModel, posts: exploreViewModel.posts)
+                            } else {
+                                SearchView(exploreViewModel: exploreViewModel, searchText: $searchText)
+                            }
+                        }
                         
+//                        ForEach(users, content: { user in
+//                            NavigationLink(destination: {
+//                                ProfileView(user: user)
+//                            }, label: {
+//                                UserRowView(user: user)
+//                            }) //: NAVIGATION LINK
+//
+//                        }) //: FOR EACH
                         
                     }) // : LAZY VSTACK
                     .searchable(text: $searchText, prompt: "커플 or 유저 검색")
@@ -39,7 +51,8 @@ struct ExploreView: View {
                 }) //: SCROLL VIEW
                 .refreshable {
                     Task {
-                        try await viewModel.fetchAllUser()
+                        try await exploreViewModel.fetchAllUser()
+                        try await exploreViewModel.fetchAllPost()
                     }
                 }
                 
@@ -51,7 +64,8 @@ struct ExploreView: View {
                     Button(action: {
                         print("CLICK RESET!")
                         Task {
-                            try await viewModel.fetchAllUser()
+                            try await exploreViewModel.fetchAllUser()
+                            try await exploreViewModel.fetchAllPost()
                         }
                     }, label: {
                         Image(systemName: "arrow.clockwise")

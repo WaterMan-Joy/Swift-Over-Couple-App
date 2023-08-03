@@ -12,7 +12,7 @@ struct FeedView: View {
     
     let user: User
     
-    @StateObject private var feedViewModel = FeedViewModel()
+    @StateObject var feedViewModel = FeedViewModel()
     @State private var showNewPostView: Bool = false
     @EnvironmentObject var viewModel: ContentViewModel
     
@@ -30,10 +30,10 @@ struct FeedView: View {
                         // feed view
                         ForEach(feedViewModel.posts) { post in
                             NavigationLink(destination: {
-                                FeedInfoView(post: post, users: feedViewModel.users)
+                                FeedInfoView(post: post)
                                 
                             }, label: {
-                                FeedRowView(post: post, user: user)
+                                FeedRowView(post: post)
                             })
 
                         } //: FOR EACH / feed view

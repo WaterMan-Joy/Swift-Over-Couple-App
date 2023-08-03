@@ -12,16 +12,19 @@ struct ProfileView: View {
     
     let user: User
     @State private var showEditProfile: Bool = false
-
     @State private var selectedFilter: PostFilterViewModel = .myPosts
     @Namespace var animation
     @StateObject private var viewModel = ProfileFilterViewModel()
-
-            
-    var posts: [Post] {
-        return Post.MOCK_POSTS.filter({ $0.user?.username == user.username})
-    }
+    @ObservedObject var profileViewModel: ProfileViewModel
     
+    var isFollowed: Bool {
+        return profileViewModel.user.isFollowed ?? false
+    }
+
+    init(user: User) {
+        self.user = user
+        self.profileViewModel = ProfileViewModel(user: user)
+    }
     
     var body: some View {
         
@@ -35,7 +38,7 @@ struct ProfileView: View {
                 HStack(content: {
                     
                     // user image
-                    KFImage(URL(string: user.profilePic))
+                    KFImage(URL(string: profileViewModel.user.profilePic))
                         .resizable()
                         .frame(width: 80, height: 80)
                         .cornerRadius(10)
@@ -95,23 +98,36 @@ struct ProfileView: View {
                     Spacer()
                     
                     // edit profile + follow
-                    Button(action: {
-                        if user.isCurrentUser {
-                            print("PROFILE VIEW: CLICK EDIT BUTTON")
+                    if profileViewModel.user.isCurrentUser {
+                        Button(action: {
+                            print("PROFILE VIEW: CLICK EDIT PROFILE BUTTON")
                             self.showEditProfile.toggle()
-                        } else {
-                            print("PROFILE VIEW: CLICK FOLLOW BUTTON")
+                        }, label: {
+                            Text("프로필 수정")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20, weight: .bold, design: .monospaced))
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 10)
+                                .background(.pink)
+                                .cornerRadius(10)
+                        })
+                    } else {
+                        HStack {
+                            Button(action: {
+                                print(isFollowed ? "PROFILE VIEW: CLICK THE FOLLOWING" : "PROFILE VIEW: CLICK THE FOLLOWER")
+                                isFollowed ? profileViewModel.unFollow() : profileViewModel.follow()
+                                
+                            }, label: {
+                                Text(isFollowed ? "팔로잉" : "팔로워")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20, weight: .bold, design: .monospaced))
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 10)
+                                    .background(isFollowed ? .pink : .blue)
+                                    .cornerRadius(10)
+                            })
                         }
-                    }, label: {
-                        Text(user.isCurrentUser ? "프로필 수정" : "팔로우")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20, weight: .bold, design: .monospaced))
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
-                            .background(user.isCurrentUser ? .pink : .blue)
-                            .cornerRadius(10)
-                        
-                    }) //: BUTTON: EDIT PROFILE BUTTON OR FOLLOW BUTTON
+                    }
                     
                     if user.couple == true {
                         Button(action: {

@@ -11,33 +11,32 @@ import Kingfisher
 struct FeedInfoView: View {
     
     let post: Post
-    let users: [User]
-    
+
+    @StateObject var viewModel = FeedViewModel()
     
     @State var text: String = ""
-    @StateObject var viewModel = FeedViewModel()
     
     var body: some View {
         VStack {
             
-            // user image + couple image
-            HStack {
-                
-                // user image
-                VStack {
-                    KFImage(URL(string: post.user?.profilePic ?? ""))
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .cornerRadius(10)
-                    
-                    Text(post.user?.username ?? "")
-                } //: VSTACK: USER IMAGE
-                
-                
-                Image(systemName: "heart.circle")
-                    .font(.system(size: 50))
-                    .foregroundColor(.pink)
-                
+//            // user image + couple image
+//            HStack {
+//
+//                // user image
+//                VStack {
+//                    KFImage(URL(string: user.profilePic))
+//                        .resizable()
+//                        .frame(width: 100, height: 100)
+//                        .cornerRadius(10)
+//
+//                    Text(user.username)
+//                } //: VSTACK: USER IMAGE
+//
+//
+//                Image(systemName: "heart.circle")
+//                    .font(.system(size: 50))
+//                    .foregroundColor(.pink)
+//
 //                if viewModel.user?.couple == false && post.ownerUid != viewModel.user?.id {
 //                    Button(action: {
 //                        Task {
@@ -51,19 +50,19 @@ struct FeedInfoView: View {
 //                    })
 //                }
                 
-                // couple image
-                VStack {
-                    KFImage(URL(string: post.user?.couplePic ?? ""))
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .cornerRadius(10)
-                    
-                    Text(post.user?.couplename ?? "")
-                } //: VSTACK: COUPLE IMAGE
-                
-            } //: HSTACK: USER IMAGE + COUPLE IMAGE
-            
-            Divider()
+//                // couple image
+//                VStack {
+//                    KFImage(URL(string: user.couplePic ?? ""))
+//                        .resizable()
+//                        .frame(width: 100, height: 100)
+//                        .cornerRadius(10)
+//
+//                    Text(user.couplename ?? "")
+//                } //: VSTACK: COUPLE IMAGE
+//
+//            } //: HSTACK: USER IMAGE + COUPLE IMAGE
+//
+//            Divider()
             
             KFImage(URL(string: post.imageUrl))
                 .resizable()
@@ -72,20 +71,27 @@ struct FeedInfoView: View {
                 .scaledToFit()
                 .frame(maxWidth: .infinity)
             
+            HStack {
+                Text(post.caption)
+                    .font(.system(.body, design: .monospaced, weight: .semibold))
+                Spacer()
+            }
+            .padding()
+            
             Divider()
             
             HStack {
                 TextField("댓글 남기기", text: $text)
-                    .padding()
                 Button(action: {
                     print("FEED INFO VIEW: CLICK COMMENT")
                 }, label: {
                     Text("확인")
                 })
             }
-            ForEach(users) { user in
-                Text(user.id)
-            }
+            .padding()
+            
+            Divider()
+            
             Spacer()
         } //: VSTACK: FEED INFO VIEW
     }
@@ -93,6 +99,6 @@ struct FeedInfoView: View {
 
 struct FeedInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedInfoView(post: Post.MOCK_POSTS[0], users: User.MOCK_USERS)
+        FeedInfoView(post: Post.MOCK_POSTS[0])
     }
 }

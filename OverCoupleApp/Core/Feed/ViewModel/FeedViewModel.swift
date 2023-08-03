@@ -13,29 +13,22 @@ import FirebaseAuth
 class FeedViewModel: ObservableObject {
     @Published var posts = [Post]()
     @Published var users = [User]()
-    @Published var user: User?
+
     
     init() {
         Task {
             try await fetchPosts()
             try await fetchAllUsers()
-            try await fetchUser()
         }
     }
+    
+    
     
     @MainActor
     func fetchAllUsers() async throws {
         let snapshot = try await Firestore.firestore().collection("users").getDocuments()
         let users = try snapshot.documents.compactMap({ try $0.data(as: User.self)})
         self.users = users
-    }
-    
-    @MainActor
-    func fetchUser() async throws {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
-        let user = try snapshot.data(as: User.self)
-        self.user = user
     }
     
     @MainActor

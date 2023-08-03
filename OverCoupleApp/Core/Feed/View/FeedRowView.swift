@@ -11,67 +11,68 @@ import Kingfisher
 struct FeedRowView: View {
     
     let post: Post
-    let user: User
+//    let user: User
+
     
     var body: some View {
         VStack(alignment: .leading, spacing: 30, content: {
             
-            // profile image + user info + action buttons
-            HStack(alignment: .center, content: {
-
-                // user profile + user name
-                VStack() {
-
-                    // user profile image
-                    KFImage(URL(string: user.profilePic))
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .scaledToFill()
-                        .clipShape(Circle())
-
-                    // user name
-                    Text(user.username)
-                        .font(.system(size: 10))
-
-                } //: VSTACK: USER PROFILE IMAGE + USER NAME
-
-                Spacer()
-                if user.couple == true {
-                    Text("커플")
-
-                }
-                Spacer()
-
-                // couple profile image + couple name
-                VStack() {
-                    if user.couple == true {
-
-                        // couple profile image
-                        KFImage(URL(string: user.couplePic ?? ""))
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .scaledToFill()
-                            .clipShape(Circle())
-
-                        // couple name
-                        Text(user.couplename ?? "")
-                            .font(.system(size: 10))
-
-                    } else if user.couple == false {
-                        Image(systemName: "figure.mixed.cardio")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .scaledToFill()
-                            .cornerRadius(10)
-                        Text("솔로")
-                    }
-
-                } //: VSTACK: COUPLE PROFILE IMAGE + COUPLE NAME
-
-            }) //: HSTACK profile image + user info + feed caption
-            .padding(.horizontal)
-            .padding(.top)
-            
+//            // profile image + user info + action buttons
+//            HStack(alignment: .center, content: {
+//
+//                // user profile + user name
+//                VStack() {
+//
+//                    // user profile image
+//                    KFImage(URL(string: user.profilePic))
+//                        .resizable()
+//                        .frame(width: 50, height: 50)
+//                        .scaledToFill()
+//                        .clipShape(Circle())
+//
+//                    // user name
+//                    Text(user.username)
+//                        .font(.system(size: 10))
+//
+//                } //: VSTACK: USER PROFILE IMAGE + USER NAME
+//
+//                Spacer()
+//                if user.couple == true {
+//                    Text("커플")
+//
+//                }
+//                Spacer()
+//
+//                // couple profile image + couple name
+//                VStack() {
+//                    if user.couple == true {
+//
+//                        // couple profile image
+//                        KFImage(URL(string: user.couplePic ?? ""))
+//                            .resizable()
+//                            .frame(width: 50, height: 50)
+//                            .scaledToFill()
+//                            .clipShape(Circle())
+//
+//                        // couple name
+//                        Text(user.couplename ?? "")
+//                            .font(.system(size: 10))
+//
+//                    } else if user.couple == false {
+//                        Image(systemName: "figure.mixed.cardio")
+//                            .resizable()
+//                            .frame(width: 50, height: 50)
+//                            .scaledToFill()
+//                            .cornerRadius(10)
+//                        Text("솔로")
+//                    }
+//
+//                } //: VSTACK: COUPLE PROFILE IMAGE + COUPLE NAME
+//
+//            }) //: HSTACK profile image + user info + feed caption
+//            .padding(.horizontal)
+//            .padding(.top)
+//            
             // post image
             KFImage(URL(string: post.imageUrl))
                 .resizable()
@@ -128,6 +129,6 @@ struct FeedRowView: View {
 
 struct FeedRowView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedRowView(post: Post.MOCK_POSTS[0], user: User.MOCK_USERS[0])
+        FeedRowView(post: Post.MOCK_POSTS[0])
     }
 }
