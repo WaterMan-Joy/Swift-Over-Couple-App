@@ -12,11 +12,11 @@ import GoogleSignIn
 @main
 struct OverCoupleAppApp: App {
     
-    init() {
-        setupAuthentication()
-      }
+//    init() {
+//        setupAuthentication()
+//      }
 
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var viewModel = ContentViewModel()
 
 
@@ -24,13 +24,12 @@ struct OverCoupleAppApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
-
         }
     }
 }
 
-extension OverCoupleAppApp {
-  private func setupAuthentication() {
-    FirebaseApp.configure()
-  }
-}
+//extension OverCoupleAppApp {
+//  private func setupAuthentication() {
+//    FirebaseApp.configure()
+//  }
+//}

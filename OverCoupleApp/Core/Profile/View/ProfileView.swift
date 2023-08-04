@@ -44,13 +44,13 @@ struct ProfileView: View {
                         .cornerRadius(10)
                     
                     // couple?
-                    if user.couple == true {
+                    if profileViewModel.user.couple == true {
                         Image(systemName: "heart.circle")
                             .font(.system(size: 40))
                     }
                     
                     // couple image
-                    KFImage(URL(string: user.couplePic ?? ""))
+                    KFImage(URL(string: profileViewModel.user.couplePic ?? ""))
                         .resizable()
                         .frame(width: 80, height: 80)
                         .cornerRadius(10)
@@ -73,7 +73,7 @@ struct ProfileView: View {
                     VStack(content: {
                         HStack(content: {
                             // user name
-                            Text(user.username)
+                            Text(profileViewModel.user.username)
                                 .font(.system(size: 30, weight: .bold, design: .monospaced))
                             // is couple?
                             Image(systemName: "heart.circle")
@@ -84,7 +84,7 @@ struct ProfileView: View {
                         VStack(content: {
                             Text("with")
                                 .font(.system(size: 20, weight: .bold, design: .monospaced))
-                            Text(user.couplename ?? "솔로")
+                            Text(profileViewModel.user.couplename ?? "솔로")
                                 .font(.system(size: 25, weight: .bold, design: .monospaced))
                             Image(systemName: "heart.circle")
                                 .font(.system(size: 30, weight: .bold, design: .monospaced))
@@ -123,13 +123,13 @@ struct ProfileView: View {
                                     .font(.system(size: 20, weight: .bold, design: .monospaced))
                                     .padding(.horizontal, 20)
                                     .padding(.vertical, 10)
-                                    .background(isFollowed ? .pink : .blue)
+                                    .background(isFollowed ? .black : .pink)
                                     .cornerRadius(10)
                             })
                         }
                     }
                     
-                    if user.couple == true {
+                    if profileViewModel.user.couple == true {
                         Button(action: {
                             Task {
                                 try await viewModel.removeCouple()
@@ -143,7 +143,7 @@ struct ProfileView: View {
                 .padding()
                 
                 // bio
-                Text("\(user.bio ?? "no bio")")
+                Text("\(profileViewModel.user.bio ?? "no bio")")
                     .font(.system(size: 15, weight: .semibold, design: .monospaced))
                 
                 Divider()

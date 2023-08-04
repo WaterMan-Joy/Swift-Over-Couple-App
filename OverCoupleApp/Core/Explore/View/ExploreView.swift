@@ -9,14 +9,19 @@ import SwiftUI
 
 struct ExploreView: View {
     
-    @State var searchText: String = ""
-//    @StateObject var viewModel = ExploreViewModel()
-    @ObservedObject var exploreViewModel = ExploreViewModel()
-    
+    // 프로퍼티
     var users: [User] {
         return searchText.isEmpty ? exploreViewModel.users : exploreViewModel.filteredUser(searchText)
     }
     
+    // VM
+    @ObservedObject var exploreViewModel = ExploreViewModel()
+    
+    // STATE
+    @State var searchText: String = ""
+    
+    
+    // BODY
     var body: some View {
         
         // explore view
@@ -30,7 +35,7 @@ struct ExploreView: View {
                         
                         ZStack {
                             if searchText.isEmpty {
-                                PostGridView(exploreViewModel: exploreViewModel, posts: exploreViewModel.posts)
+                                PostGridView(exploreViewModel: exploreViewModel)
                             } else {
                                 SearchView(exploreViewModel: exploreViewModel, searchText: $searchText)
                             }

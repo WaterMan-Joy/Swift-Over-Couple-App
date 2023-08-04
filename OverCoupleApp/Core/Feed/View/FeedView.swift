@@ -7,15 +7,27 @@
 
 import SwiftUI
 import GoogleSignIn
+import Kingfisher
 
 struct FeedView: View {
     
+    // 프로퍼티
     let user: User
     
-    @StateObject var feedViewModel = FeedViewModel()
-    @State private var showNewPostView: Bool = false
+    // VM
+    @ObservedObject var feedViewModel = FeedViewModel(user: User.MOCK_USERS[0])
     @EnvironmentObject var viewModel: ContentViewModel
     
+    // STATE
+    @State private var showNewPostView: Bool = false
+    
+    // INIT
+    init(user: User) {
+        self.user = user
+        self.feedViewModel = FeedViewModel(user: user)
+    }
+    
+    // BODY
     var body: some View {
         
         // feed view
@@ -30,10 +42,10 @@ struct FeedView: View {
                         // feed view
                         ForEach(feedViewModel.posts) { post in
                             NavigationLink(destination: {
-                                FeedInfoView(post: post)
+                                FeedInfoView(post: post, viewModel: feedViewModel)
                                 
                             }, label: {
-                                FeedRowView(post: post)
+                                FeedCellView(feedCellViewModel: FeedCellViewModel(post: post))
                             })
 
                         } //: FOR EACH / feed view
@@ -65,7 +77,7 @@ struct FeedView: View {
                 })
                 
             }) //: ZSTACK
-            .navigationTitle("\(user.username)님의 피드")
+            .navigationTitle("OVER COUPLE")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 
@@ -75,9 +87,11 @@ struct FeedView: View {
                             .environmentObject(viewModel)
 
                     }, label: {
-                        Image(systemName: "list.dash")
-                            .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                            .foregroundColor(.black)
+                        KFImage(URL(string: user.profilePic))
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+
                     })
                 }) //: TOOL BAR ITEM
                 

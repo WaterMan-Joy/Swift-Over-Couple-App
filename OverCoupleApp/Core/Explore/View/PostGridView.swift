@@ -13,8 +13,6 @@ struct PostGridView: View {
     
     @ObservedObject var exploreViewModel: ExploreViewModel
     
-    let posts: [Post]
-    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -24,7 +22,7 @@ struct PostGridView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, content: {
-                ForEach(posts, content: { post in
+                ForEach(exploreViewModel.posts, content: { post in
                     NavigationLink(destination: {
                         PostCell(post: post)
                     }, label: {
@@ -32,6 +30,7 @@ struct PostGridView: View {
                             .resizable()
                             .scaledToFill()
                             .cornerRadius(10)
+                            .padding(.all, 5)
                     })
                 })
             })
@@ -41,6 +40,6 @@ struct PostGridView: View {
 
 struct PostGridView_Previews: PreviewProvider {
     static var previews: some View {
-        PostGridView(exploreViewModel: ExploreViewModel(), posts: Post.MOCK_POSTS)
+        PostGridView(exploreViewModel: ExploreViewModel())
     }
 }

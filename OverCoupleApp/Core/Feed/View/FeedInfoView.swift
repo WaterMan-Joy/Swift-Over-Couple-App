@@ -12,7 +12,7 @@ struct FeedInfoView: View {
     
     let post: Post
 
-    @StateObject var viewModel = FeedViewModel()
+    @ObservedObject var viewModel: FeedViewModel
     
     @State var text: String = ""
     
@@ -99,6 +99,6 @@ struct FeedInfoView: View {
 
 struct FeedInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedInfoView(post: Post.MOCK_POSTS[0])
+        FeedInfoView(post: Post.MOCK_POSTS[0], viewModel: FeedViewModel(user: User.MOCK_USERS[0]))
     }
 }
