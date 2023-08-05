@@ -15,7 +15,7 @@ struct FeedView: View {
     let user: User
     
     // VM
-    @ObservedObject var feedViewModel = FeedViewModel(user: User.MOCK_USERS[0])
+    @ObservedObject var feedViewModel: FeedViewModel
     @EnvironmentObject var viewModel: ContentViewModel
     
     // STATE
@@ -95,16 +95,6 @@ struct FeedView: View {
                     })
                 }) //: TOOL BAR ITEM
                 
-                ToolbarItem(placement: .navigationBarTrailing, content: {
-                    Button(action: {
-                        print("arrow.clockwise click!")
-                        
-                    }, label: {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                            .foregroundColor(.black)
-                    })
-                }) //: TOOL BAR ITEM
             }) //: TOOL BAR
         }
     }

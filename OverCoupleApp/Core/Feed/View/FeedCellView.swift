@@ -10,8 +10,11 @@ import Kingfisher
 
 struct FeedCellView: View {
     
+    // Computed Property
     var didLike: Bool {
-        return feedCellViewModel.post.didLike ?? false
+        get {
+            return feedCellViewModel.post.didLike ?? false
+        }
     }
     
     // VM
@@ -77,18 +80,19 @@ struct FeedCellView: View {
                 // action buttons + date
                 HStack(content: {
                     
-                    // date
+                    // DATE
                     Text("\(feedCellViewModel.post.timestamp.dateValue().formatted())")
                         .font(.system(size: 15))
+                    //: DATE
+                    
                     Spacer()
 
-                    // comments button
-                    Button(action: {
-                        print("FEED ROW VIEW: CLICK COMMENT")
+                    // NAVIGATION COMMENTS BUTTON
+                    NavigationLink(destination: {
+                        CommentsView(post: feedCellViewModel.post)
                     }, label: {
                         Image(systemName: "text.bubble")
-                            
-                    }) //: COMMENTS BUTTON
+                    }) //: NAVIGATION COMMENTS BUTTON
                     
                     // likes button
                     Button(action: {
@@ -97,6 +101,7 @@ struct FeedCellView: View {
                         
                     }, label: {
                         Image(systemName: didLike ? "heart.fill" : "heart")
+                            .foregroundColor(didLike ? .red : .black)
                             
                     }) //: LIKES BUTTON
                     

@@ -21,10 +21,11 @@ class FeedCellViewModel: ObservableObject {
     
     init(post: Post) {
         self.post = post
+        checkIfUserLikedPost()
     }
     
     func like() {
-        print("DEBUG: FEED CELL VIEW MODEL: CLICK LIKE")
+        print("DEBUG: FEED CELL VIEW MODEL: LIKE")
         guard let uid = LoginViewModel.shared.userSession?.uid else {return}
         let postId = post.id
         
@@ -39,7 +40,7 @@ class FeedCellViewModel: ObservableObject {
     }
     
     func unLike() {
-        print("DEBUG: FEED CELL VIEW MODEL: CLICK UNLIKE")
+        print("DEBUG: FEED CELL VIEW MODEL: UNLIKE")
         guard post.likes > 0 else {return}
         guard let uid = LoginViewModel.shared.userSession?.uid else {return}
         let postId = post.id
@@ -54,6 +55,13 @@ class FeedCellViewModel: ObservableObject {
     }
     
     func checkIfUserLikedPost() {
-        print("DEBUG: FEED CELL VIEW MODEL: CLICK CHECK LIKES")
+        print("DEBUG: FEED CELL VIEW MODEL: CHECK LIKES")
+        guard let uid = LoginViewModel.shared.userSession?.uid else {return}
+        let postId = post.id
+        
+        Firestore.firestore().collection("users").document(uid).collection("user-likes").document(postId).getDocument { Snapshot, _ in
+            guard let didLike = Snapshot?.exists else {return}
+            self.post.didLike = didLike
+        }
     }
 }

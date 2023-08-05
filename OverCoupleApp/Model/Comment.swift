@@ -6,10 +6,16 @@
 //
 
 import Foundation
-
+import FirebaseFirestore
 
 struct Comment {
-    
+    let id = NSUUID().uuidString
+    let username: String
+    let postOwnerUid: String
+    let profileImageUrl: String
+    let commentText: String
+    let timestamp: Timestamp
+    let uid: String
 }
 
 

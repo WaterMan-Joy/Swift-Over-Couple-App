@@ -19,7 +19,7 @@ struct PostService {
     
     static func fetchFeedPosts() async throws -> [Post] {
         
-        let snapshot = try await Firestore.firestore().collection("posts").getDocuments()
+        let snapshot = try await Firestore.firestore().collection("posts").order(by: "timestamp", descending: true).getDocuments()
         var posts = try snapshot.documents.compactMap({ try $0.data(as: Post.self)})
         
         for i in 0 ..< posts.count {
