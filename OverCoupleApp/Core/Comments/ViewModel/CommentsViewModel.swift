@@ -11,11 +11,12 @@ import FirebaseFirestore
 
 class CommentsViewModel: ObservableObject {
     
-    private let post: Post
-    @Published var comments: [Comment] = [Comment]()
+    let post: Post
+    @Published var comments = [Comment]()
     
     init(post: Post) {
         self.post = post
+        fetchComments()
     }
     
     func uploadComment(commentText: String) {
@@ -25,10 +26,10 @@ class CommentsViewModel: ObservableObject {
         let data: [String : Any] = [
             "uid": user.id,
             "username": user.username,
-            "profilePic": user.profilePic,
-            "timestamp": Timestamp(),
             "postOwnerUid": post.ownerUid,
+            "profileImageUrl": user.profilePic,
             "commentText": commentText,
+            "timestamp": Timestamp(),
         ]
         Firestore.firestore().collection("posts").document(postId).collection("post-comments").addDocument(data: data) { error in
             if let error = error {
@@ -39,6 +40,20 @@ class CommentsViewModel: ObservableObject {
     }
     
     func fetchComments() {
+        print("DEBUG: COMMENTS VIEW MODEL: FUNC FETCH COMMENTS")
+        let postId = post.id
+        let query = Firestore.firestore().collection("posts").document(postId).collection("post-comments").order(by: "timestamp", descending: true)
         
+        query.addSnapshotListener { snapshot, _ in
+            guard let addedDocs = snapshot?.documentChanges.filter({ $0.type == .added}) else {return}
+            self.comments.append(contentsOf: addedDocs.compactMap({ try? $0.document.data(as: Comment.self)}))
+            
+//            snapshot?.documentChanges.forEach({ change in
+//                if change.type == .added {
+//                    guard let comment = try? change.document.data(as: Comment.self) else {return}
+//                    self.comments.append(comment)
+//                }
+//            })
+        }
     }
 }

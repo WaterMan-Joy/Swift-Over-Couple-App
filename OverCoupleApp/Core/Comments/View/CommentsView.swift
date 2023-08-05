@@ -23,15 +23,11 @@ struct CommentsView: View {
         VStack {
             ScrollView {
                 LazyVStack {
-                    ForEach(0 ..< 10) { _ in
-                        CommentsCell()
-                        Divider()
+                    ForEach(commentsViewModel.comments) { comment in
+                        CommentsCell(comment: comment)
                     }
                 }
-                CustomInput(inputText: $commentText, action: {
-                    print("COMMENTS VIEW: CLICK CUSTOM INPUT BUTTON")
-                    uploadComment()
-                })
+                CustomInput(inputText: $commentText, action: uploadComment)
                 Spacer()
             }
         }

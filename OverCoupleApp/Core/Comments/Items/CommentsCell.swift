@@ -6,27 +6,32 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CommentsCell: View {
+    
+    let comment: Comment
+    
     var body: some View {
         HStack {
-            Image(systemName: "person")
+            KFImage(URL(string: comment.profileImageUrl))
                 .frame(width: 30, height: 30)
+                .clipShape(Circle())
             
-            Text("Joy Kim")
+            Text(comment.username)
                 .font(.system(size: 15, weight: .bold, design: .monospaced))
             Text("님이 메시지를 보냈습니다")
                 .font(.system(size: 15, weight: .semibold, design: .monospaced))
             Spacer()
-            Text("시간")
+            Text(comment.timestamp.dateValue().formatted())
             
         }
         .padding(.horizontal)
     }
 }
 
-struct CommentsCell_Previews: PreviewProvider {
-    static var previews: some View {
-        CommentsCell()
-    }
-}
+//struct CommentsCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CommentsCell()
+//    }
+//}

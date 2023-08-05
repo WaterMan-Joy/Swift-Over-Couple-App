@@ -7,9 +7,10 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-struct Comment {
-    let id = NSUUID().uuidString
+struct Comment: Identifiable, Hashable, Codable {
+    @DocumentID var id: String?
     let username: String
     let postOwnerUid: String
     let profileImageUrl: String

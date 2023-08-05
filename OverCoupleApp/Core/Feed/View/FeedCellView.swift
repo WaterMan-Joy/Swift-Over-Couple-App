@@ -23,6 +23,7 @@ struct FeedCellView: View {
     // INIT
     init(feedCellViewModel: FeedCellViewModel) {
         self.feedCellViewModel = feedCellViewModel
+        
     }
     
     var body: some View {

@@ -15,6 +15,8 @@ struct ContentView: View {
 
     var body: some View {
         Group {
+//            LoginView()
+
             if viewModel.userSession == nil {
                 LoginView()
 
@@ -24,6 +26,7 @@ struct ContentView: View {
                     MainTabView(user: currentUser)
                 }
             }
+            
 //            switch loginViewModel.state {
 //                case .signedIn: MainTabView()
 //                    .environmentObject(loginViewModel)
