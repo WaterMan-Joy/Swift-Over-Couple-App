@@ -22,11 +22,11 @@ struct Post: Identifiable, Hashable, Codable {
 
 extension Post {
     static var MOCK_POSTS: [Post] = [
-        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp(), user: User.MOCK_USERS[0]),
-        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp(), user: User.MOCK_USERS[1]),
-        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp(), user: User.MOCK_USERS[3]),
-        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp(), user: User.MOCK_USERS[1]),
-        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp(), user: User.MOCK_USERS[1]),
+        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp()),
+        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp()),
+        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp()),
+        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp()),
+        .init(id: NSUUID().uuidString, ownerUid: NSUUID().uuidString, caption: "Over man Joy", likes: 0, imageUrl: "over-image-1", timestamp: Timestamp()),
     ]
 }
 

@@ -14,6 +14,8 @@ class FeedCellViewModel: ObservableObject {
     
     @Published var post: Post
     
+    @Published var postCount: Int = 0
+    
     var likeString: String {
         let label = post.likes == 0 ? "like" : "likes"
         return "\(post.likes) \(label)"
@@ -22,6 +24,17 @@ class FeedCellViewModel: ObservableObject {
     init(post: Post) {
         self.post = post
         checkIfUserLikedPost()
+        Task {
+            try await postCount()
+        }
+    }
+    
+    @MainActor
+    func postCount() async throws {
+        let postId = post.id
+        let doc = try await Firestore.firestore().collection("posts").document(postId).collection("post-comments").getDocuments()
+        self.postCount = doc.count
+        print("DEBUG: FEED CELL VIEW MODEL: POST COUNT \(doc.count)")
     }
     
     func like() {
@@ -32,6 +45,9 @@ class FeedCellViewModel: ObservableObject {
         Firestore.firestore().collection("posts").document(postId).collection("post-likes").document(uid).setData( [ : ] ) { _ in
             Firestore.firestore().collection("users").document(uid).collection("user-likes").document(postId).setData([ : ]) { _ in
                 Firestore.firestore().collection("posts").document(postId).updateData(["likes" : self.post.likes + 1])
+                
+                NotificationViewModel.uploadNotification(toUid: self.post.ownerUid, type: .like, post: self.post)
+                
                 self.post.didLike = true
                 self.post.likes += 1
             }

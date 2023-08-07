@@ -92,6 +92,7 @@ struct FeedCellView: View {
                     NavigationLink(destination: {
                         CommentsView(post: feedCellViewModel.post)
                     }, label: {
+                        Text("댓글\(feedCellViewModel.postCount)개")
                         Image(systemName: "text.bubble")
                     }) //: NAVIGATION COMMENTS BUTTON
                     
