@@ -8,16 +8,24 @@
 import SwiftUI
 
 struct NotificationView: View {
+    
+    
+    @ObservedObject var notificationViewModel = NotificationViewModel()
+    
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
                     LazyVStack {
-                        ForEach(0 ..< 20, id: \.self) {_ in
-                            NotificationCell()
+                        ForEach(notificationViewModel.notifications) { notification in
+                            NotificationCell(viewModel: NotificationCellViewModel(notification: notification))
                             Divider()
                         }
                     }
+                
+                }
+                .refreshable {
+                    notificationViewModel.fetchNotifications()
                 }
             }
             .navigationTitle("알림")

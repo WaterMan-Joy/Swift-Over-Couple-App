@@ -9,9 +9,35 @@ import Foundation
 import FirebaseFirestore
 
 class NotificationViewModel: ObservableObject {
-    @Published var notifications = [Notification]()
     
-    func fetchNotifications() {}
+    @Published var notifications = [Notification]()
+    @Published var notificationsCount: Int = 0
+    
+    init() {
+        fetchNotifications()
+        Task {
+            try await notificationsCount()
+        }
+    }
+    
+    @MainActor
+    func notificationsCount() async throws {
+        guard let user = LoginViewModel.shared.currentUser else {return}
+        let snapshot = try await Firestore.firestore().collection("notifications").document(user.id).collection("user-notifications").getDocuments()
+        print(snapshot.count)
+        self.notificationsCount = snapshot.count
+        
+    }
+    
+    func fetchNotifications() {
+        guard let user = LoginViewModel.shared.currentUser else {return}
+        let query = Firestore.firestore().collection("notifications").document(user.id).collection("user-notifications").order(by: "timestamp", descending: true)
+        
+        query.getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else {return}
+            self.notifications = documents.compactMap({ try? $0.data(as: Notification.self)})
+        }
+    }
     
     static func uploadNotification(toUid uid: String, type: NotificationType, post: Post? = nil) {
         guard let user = LoginViewModel.shared.currentUser else {return}

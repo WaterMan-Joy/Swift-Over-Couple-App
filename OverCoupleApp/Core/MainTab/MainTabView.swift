@@ -14,7 +14,7 @@ struct MainTabView: View {
 
     @State private var selectedIndex: Int = 0
     
-   
+    @StateObject var notificationsViewModel = NotificationViewModel()
     
     var body: some View {
         TabView(selection: $selectedIndex, content: {
@@ -49,7 +49,7 @@ struct MainTabView: View {
                 .tabItem({
                     Image(systemName: "bell.circle")
                 }).tag(3)
-                .badge(10)
+                .badge(notificationsViewModel.notificationsCount)
             
             CurrentUserView(user: user)
                 .navigationBarBackButtonHidden(true)

@@ -18,9 +18,8 @@ struct User: Identifiable, Hashable, Codable {
     let couplename: String?
     let couplePic: String?
     var couple: Bool
+    
     var isFollowed: Bool? = false
-    
-    
     
     var isCurrentUser: Bool {
         guard let currentUid = Auth.auth().currentUser?.uid else {return false}
