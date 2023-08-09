@@ -41,13 +41,7 @@ struct FeedView: View {
                         
                         // feed view
                         ForEach(feedViewModel.posts) { post in
-                            NavigationLink(destination: {
-                                FeedInfoView(post: post, viewModel: feedViewModel)
-                                
-                            }, label: {
-                                FeedCellView(feedCellViewModel: FeedCellViewModel(post: post))
-                            })
-
+                            FeedCell(feedCellViewModel: FeedCellViewModel(post: post))
                         } //: FOR EACH / feed view
                         
                     } //: LAZY VSTACK / feeds view

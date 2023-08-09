@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct FeedCellView: View {
+struct FeedCell: View {
     
     // Computed Property
     var didLike: Bool {
@@ -30,15 +30,17 @@ struct FeedCellView: View {
         VStack(alignment: .leading, spacing: 30, content: {
             
             HStack {
-                NavigationLink(destination: {
-                    ProfileView(user: feedCellViewModel.post.user ?? User.MOCK_USERS[0])
-                }, label: {
-                    KFImage(URL(string: feedCellViewModel.post.user?.profilePic ?? ""))
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-                })
+                if let user = feedCellViewModel.post.user {
+                    NavigationLink(destination: {
+                        ProfileView(user: user)
+                    }, label: {
+                        KFImage(URL(string: user.profilePic))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                    })
+                }
                 
                 Text(feedCellViewModel.post.user?.username ?? "")
                     .font(.system(.headline, design: .monospaced, weight: .semibold))
@@ -64,7 +66,7 @@ struct FeedCellView: View {
             // post image
             KFImage(URL(string: feedCellViewModel.post.imageUrl))
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
                 .frame(maxWidth: .infinity)
                 
             
@@ -118,13 +120,12 @@ struct FeedCellView: View {
         .background(Color.black.opacity(0.1))
         .cornerRadius(10)
         .padding()
-        
-        
-    } //: VSTACK / FEED ROW VIEW
+    }
+
 }
 
-struct FeedCellView_Previews: PreviewProvider {
+struct FeedCell_Previews: PreviewProvider {
     static var previews: some View {
-        FeedCellView(feedCellViewModel: FeedCellViewModel(post: Post.MOCK_POSTS[0]))
+        FeedCell(feedCellViewModel: FeedCellViewModel(post: Post.MOCK_POSTS[0]))
     }
 }

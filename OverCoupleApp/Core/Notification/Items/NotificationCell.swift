@@ -20,11 +20,17 @@ struct NotificationCell: View {
     
     var body: some View {
         HStack {
-            KFImage(URL(string: viewModel.notification.profileImageUrl))
-                .resizable()
-                .frame(width: 40, height: 40)
-                .clipShape(Circle())
             
+            if let user = viewModel.notification.user {
+                NavigationLink(destination: {
+                    ProfileView(user: user)
+                }, label: {
+                    KFImage(URL(string: viewModel.notification.profileImageUrl))
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                })
+            }
             
             VStack {
                 HStack {
@@ -41,20 +47,30 @@ struct NotificationCell: View {
             .padding(.horizontal)
             
             Spacer()
-            if viewModel.notification.type == .comment || viewModel.notification.type == .like {
-                Image(systemName: "person")
-                    .resizable()
-                    .frame(width: 50, height: 50)
+            if viewModel.notification.type != .follow {
+                if let post = viewModel.notification.post {
+                    NavigationLink(destination: {
+                        FeedCell(feedCellViewModel: FeedCellViewModel(post: post))
+                            .padding()
+                    }, label: {
+                        KFImage(URL(string: post.imageUrl))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
+                            .cornerRadius(5)
+                    })
+                }
             } else if viewModel.notification.type == .follow {
                 Button(action: {
                     print("NOTIFICATION CELL: CLICK FOLLOW BUTTON")
+                    isFollowed ? viewModel.unFollow() : viewModel.follow()
                 }, label: {
                     Text(isFollowed ? "팔로잉" : "팔로우")
                         .padding()
                         .background(isFollowed ? .black : .pink)
                         .foregroundColor(.white)
                         .frame(height: 40)
-                        .cornerRadius(30)
+                        .cornerRadius(10)
                 })
             }
         }

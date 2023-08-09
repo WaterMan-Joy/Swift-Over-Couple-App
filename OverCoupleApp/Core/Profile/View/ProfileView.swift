@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State private var showEditProfile: Bool = false
     @State private var selectedFilter: PostFilterViewModel = .myPosts
     @Namespace var animation
+    
     @StateObject private var viewModel = ProfileFilterViewModel()
     @ObservedObject var profileViewModel: ProfileViewModel
     
