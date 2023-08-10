@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 
 class ProfileViewModel: ObservableObject {
     
     @Published var user: User
+    @Published var currentUserUid = Auth.auth().currentUser?.uid
     
     init(user: User) {
         self.user = user
@@ -41,6 +43,14 @@ class ProfileViewModel: ObservableObject {
             self.user.isFollowed = isFollowed
             print("DEBUG: PROFILE VIEW MODEL: CHECK IF USER IS FOLLOWED")
         }
+    }
+    
+    func addCouple(coupleId: String) async throws {
+        try await CoupleService.addCouple(coupleId: coupleId)
+    }
+    
+    func removeCouple() async throws {
+        try await CoupleService.removeCouple()
     }
     
 }

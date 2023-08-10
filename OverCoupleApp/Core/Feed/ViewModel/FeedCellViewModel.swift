@@ -52,7 +52,6 @@ class FeedCellViewModel: ObservableObject {
                 self.post.likes += 1
             }
         }
-        
     }
     
     func unLike() {

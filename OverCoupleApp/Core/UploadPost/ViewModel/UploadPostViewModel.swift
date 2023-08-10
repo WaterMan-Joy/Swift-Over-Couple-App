@@ -24,21 +24,6 @@ class UploadPostViewModel: ObservableObject {
     private var uiImage: UIImage?
     
     func loadImage(fromItem item: PhotosPickerItem?) async {
-//        if let item = item {
-//            if let data = try? await item.loadTransferable(type: Data.self) {
-//                if let uiImage = UIImage(data: data) {
-//                    self.uiImage = uiImage
-//                    self.profileImage = Image(uiImage: uiImage)
-//                } else {
-//                    print("DEBUG: UPLOAD POST VIEWMODEL: NO UIIMAGE")
-//                }
-//            } else {
-//                print("DEBUG: UPLOAD POST VIEWMODEL: NO DATA")
-//            }
-//        } else {
-//            print("DEBUG: UPLOAD POST VIEWMODEL: NO ITEM")
-//        }
-        
         guard let item = item else { return}
         guard let data = try? await item.loadTransferable(type: Data.self) else {return}
         guard let uiImage = UIImage(data: data) else {return}

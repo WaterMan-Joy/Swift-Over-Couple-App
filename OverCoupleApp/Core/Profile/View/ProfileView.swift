@@ -138,6 +138,14 @@ struct ProfileView: View {
                         }, label: {
                             Text("헤어지기")
                         })
+                    } else if profileViewModel.user.couple != true && profileViewModel.user.id != profileViewModel.currentUserUid{
+                        Button(action: {
+                            Task {
+                                try await profileViewModel.addCouple(coupleId: user.id)
+                            }
+                        }, label: {
+                            Text("만나기")
+                        })
                     }
                     
                 }) //: HSTACK

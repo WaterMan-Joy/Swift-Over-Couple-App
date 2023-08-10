@@ -9,17 +9,11 @@ import SwiftUI
 
 struct ExploreView: View {
     
-    // 프로퍼티
-    var users: [User] {
-        return searchText.isEmpty ? exploreViewModel.users : exploreViewModel.filteredUser(searchText)
-    }
-    
     // VM
     @ObservedObject var exploreViewModel = ExploreViewModel()
     
     // STATE
     @State var searchText: String = ""
-    
     
     // BODY
     var body: some View {
@@ -40,16 +34,6 @@ struct ExploreView: View {
                                 SearchView(exploreViewModel: exploreViewModel, searchText: $searchText)
                             }
                         }
-                        
-//                        ForEach(users, content: { user in
-//                            NavigationLink(destination: {
-//                                ProfileView(user: user)
-//                            }, label: {
-//                                UserRowView(user: user)
-//                            }) //: NAVIGATION LINK
-//
-//                        }) //: FOR EACH
-                        
                     }) // : LAZY VSTACK
                     .searchable(text: $searchText, prompt: "커플 or 유저 검색")
                     

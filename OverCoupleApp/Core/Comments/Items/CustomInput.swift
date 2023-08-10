@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct CustomInput: View {
-    
+struct CustomInput: View { 
     
     @Binding var inputText: String
     var action: () -> Void

@@ -29,10 +29,6 @@ struct LoginView: View {
                     .cornerRadius(20)
                 Text("ONLY ENG")
                 Spacer()
-                
-
-                
-                
                 Button(action: {
                     print("sign up with google")
                     Task {

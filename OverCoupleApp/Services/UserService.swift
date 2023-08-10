@@ -6,7 +6,7 @@
 //
 
 
-import Firebase
+
 import FirebaseFirestore
 
 struct UserService {

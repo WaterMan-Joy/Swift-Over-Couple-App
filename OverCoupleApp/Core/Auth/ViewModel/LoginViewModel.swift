@@ -87,44 +87,6 @@ class LoginViewModel: ObservableObject {
                     }
                 }
             })
-//            Auth.auth().signIn(with: credential) { result, error in
-//
-//                // At this point, our user is signed in
-//                if let err = error {
-//                    print(err.localizedDescription)
-//                    return
-//                } else {
-//
-//                }
-//                guard let user = result?.user else {return}
-//                let ref = Firestore.firestore().collection("users").document(user.uid)
-//                let ref2 = try await ref.getDocument().exists
-//
-//                Task {
-//                    let ref2 = try await ref.getDocument().exists
-//                    print("DEBUG: aa \(ref2)")
-//
-//                    if ref2 {
-//                        return
-//                    }
-//                    else {
-//
-//                    }
-//                }
-//                let userData = User(id: user.uid, username: user.displayName ?? "", email: user.email ?? "", profilePic: user.photoURL?.absoluteString ?? "", bio: nil, couplename: nil, couple: false)
-//                self.currentUser = userData
-//                guard let encodedUser = try? Firestore.Encoder().encode(userData) else {return}
-//                print("DEBUG: \(encodedUser)")
-//                Firestore.firestore().collection("users").document(userData.id).setData(encodedUser, merge: false) { error in
-//                    if let err = error {
-//                        print("DEBUG: \(err.localizedDescription)")
-//                    }
-//                    else {
-//                        print("DEBUG: 성공")
-//                    }
-//                }
-//                self.userSession = result?.user
-//            }
         }
     } //: sign in
     

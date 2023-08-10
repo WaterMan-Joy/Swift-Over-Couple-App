@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchView: View {
     
     @ObservedObject var exploreViewModel: ExploreViewModel
+    
     @Binding var searchText: String
     
     var users: [User] {

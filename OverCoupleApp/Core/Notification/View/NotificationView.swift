@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NotificationView: View {
     
-    
     @ObservedObject var notificationViewModel = NotificationViewModel()
     
     var body: some View {
